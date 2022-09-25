@@ -8,6 +8,7 @@ import Clase from './pages/Clase'
 import Error from './pages/Error'
 import ProtectedRoute from "./tools/ProtectedRoute";
 import Contratacion from './pages/Contratacion'
+import { Box, } from "@mui/material"
 
 
 function App() {
@@ -15,29 +16,31 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar/>
-      <Routes>
-        <Route path="/" >
-          <Route index element={<Home user={user}/>}/>
-          <Route path="login" element={<Login setUser={setUser}/>}/>
-          <Route path="clase">
-            <Route path=':claseId' element={<Clase user={user} />}>
-              <Route path="contratacion" element={
-                <ProtectedRoute user={user}>
-                  <Contratacion user={user}/>
-                </ProtectedRoute>
-              }
-              />
+      <Box bgcolor='#ebebeb' sx={{width:1, height:1}}>
+        <Routes>
+          <Route path="/" >
+            <Route index element={<Home user={user}/>}/>
+            <Route path="login" element={<Login setUser={setUser}/>}/>
+            <Route path="clase">
+              <Route path=':claseId' element={<Clase user={user} />}>
+                <Route path="contratacion" element={
+                  <ProtectedRoute user={user}>
+                    <Contratacion user={user}/>
+                  </ProtectedRoute>
+                }
+                />
+              </Route>
             </Route>
+            <Route to='mis-clases' element={
+              <ProtectedRoute user={user}>
+                
+              </ProtectedRoute>
+            }
+            />
+            <Route path='*' element={<Error/>} />
           </Route>
-          <Route to='mis-clases' element={
-            <ProtectedRoute user={user}>
-              
-            </ProtectedRoute>
-          }
-          />
-          <Route path='*' element={<Error/>} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Box>
       <Footer/>
     </BrowserRouter>
   );

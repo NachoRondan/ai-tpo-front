@@ -14,20 +14,6 @@ import Container from '@mui/material/Container';
 import {useNavigate} from 'react-router-dom'
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );  
-}
-
-
 export default function SignIn({setUser}) {
   const navigate = useNavigate()
   const handleSubmit = (event) => {
@@ -46,10 +32,11 @@ export default function SignIn({setUser}) {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          py:8  
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -105,7 +92,6 @@ export default function SignIn({setUser}) {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 }

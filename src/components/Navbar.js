@@ -10,10 +10,15 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Link } from 'react-router-dom';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Navbar = () => {
+const Navbar = ({user}) => {
+
+  var settings = [{option:'Mi Perfil', link:'/profile'}, {option:'Cursos', link:'/my-courses'}, {option:'Contrataciones', link:'/contratacion'}, {option:'Log in', link:'/login'}];
+  if(user){
+    settings = ['Mi Perfil', 'Cursos', 'Contrataciones', 'Log in'];
+  }
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -25,11 +30,11 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl" >
         <Toolbar disableGutters>
         <Box sx={{display: 'flex', width: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-          <MenuBookIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <MenuBookIcon  />
           <Typography
             variant="h6"
             noWrap
@@ -37,7 +42,6 @@ const Navbar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -46,26 +50,7 @@ const Navbar = () => {
             }}
           >
             APP NAME
-          </Typography>
-          <MenuBookIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            APP NAME
-          </Typography>
+          </Typography>          
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -89,8 +74,9 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                
+                <MenuItem component={Link} to={setting.link} key={setting} onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">{setting.option}</Typography>
                 </MenuItem>
               ))}
             </Menu>
