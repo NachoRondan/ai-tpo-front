@@ -23,6 +23,7 @@ export default function NestedMenuFilter(props){
     >
       <ListItemButton onClick={handleClick}>        
         <ListItemText primary={props.filterName} />
+        {props.filterIcon}
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

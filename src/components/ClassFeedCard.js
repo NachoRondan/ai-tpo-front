@@ -12,13 +12,14 @@ export default function ClassFeedCard(props) {
   
   return (
     <Link to={'clase/'+ props.course.courseId} style={{ textDecoration: 'none', color: 'unset' }}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, maxHeight: 310 }}>
       <CardHeader
         avatar={
           <Avatar src={props.profesor.picture} sx={{ bgcolor: red[500] }} aria-label="recipe"/>
         }
         title={props.course.className}
         subheader={props.profesor.name + ' ' + props.profesor.lastname}
+        subheaderTypographyProps={{display:{xs: 'none', md:'block'}}}
       />
       <CardMedia
         component="img"
