@@ -1,5 +1,12 @@
 import { Box, Container, Grid } from "@mui/material"
 import ClassFeedCard from "./ClassFeedCard"
+import getUsers from '../assets/MockUpVariables/MockUpUsers'
+
+function findProfesor(profesorId) {
+  return getUsers().find((element) => {
+    return element.userId === profesorId;
+  })
+}
 
 export default function Feed(props) {
     return (
@@ -8,7 +15,7 @@ export default function Feed(props) {
           <Grid container py={2} spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
             {props.courses.map(( course, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
-                <ClassFeedCard course={course}/>
+                <ClassFeedCard profesor={findProfesor(course.profesorId)} course={course}/>
               </Grid>
             ))}
           </Grid>
