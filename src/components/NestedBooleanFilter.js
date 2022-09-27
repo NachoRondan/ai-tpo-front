@@ -22,8 +22,9 @@ export default function NestedBooleanFilter(props){
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      <ListItemButton onClick={handleClick}>        
+      <ListItemButton onClick={handleClick}>  
         <ListItemText primary={props.filterName} />
+        {props.filterIcon}
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
