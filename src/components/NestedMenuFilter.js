@@ -31,7 +31,7 @@ export default function NestedMenuFilter(props){
         id="combo-box-demo"
         options={props.options}
         sx={{ width: 3/4, display:'flex', pl:4 }}
-        renderInput={(params) => <TextField {...params} label={'Buscar ' + props.filterName} />}
+        renderInput={(params) => <TextField {...params} label={'Buscar...'} />}
         />
       </Collapse>
     </List>
