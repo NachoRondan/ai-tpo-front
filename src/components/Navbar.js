@@ -30,7 +30,7 @@ const Navbar = ({user}) => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" >
       <Container maxWidth="xl" >
         <Toolbar disableGutters>
         <Box sx={{display: 'flex', width: 1, justifyContent: 'space-between', alignItems: 'center' }}>
