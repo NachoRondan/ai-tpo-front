@@ -22,7 +22,7 @@ function App() {
             <Route index element={<Home user={user}/>}/>
             <Route path="login" element={<Login setUser={setUser}/>}/>
             <Route path="clase">
-              <Route path=':claseId' element={<Clase user={user} />}>
+              <Route path=':claseId' element={<Course user={user} />}>
                 <Route path="contratacion" element={
                   <ProtectedRoute user={user}>
                     <Contratacion user={user}/>
