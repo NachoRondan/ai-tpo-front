@@ -14,9 +14,19 @@ import { Link } from 'react-router-dom';
 
 const Navbar = ({user}) => {
 
-  var settings = [{option:'Mi Perfil', link:'/profile'}, {option:'Cursos', link:'/my-courses'}, {option:'Contrataciones', link:'/contratacion'}, {option:'Log in', link:'/login'}];
+  let settings = [
+    {option:'Mi Perfil', link:'/login'},
+    {option:'Cursos', link:'/login'},
+    {option:'Contrataciones', link:'/login'},
+    {option:'Log in', link:'/login'}
+  ];
   if(user){
-    settings = ['Mi Perfil', 'Cursos', 'Contrataciones', 'Log in'];
+    settings = [
+      {option:'Mi Perfil', link:'/profile'},
+      {option:'Cursos', link:'/my-courses'},
+      {option:'Contrataciones', link:'/contratacion'},
+      {option:'Log Out', link:'/login'}
+    ];
   }
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

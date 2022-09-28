@@ -4,7 +4,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
 import Calification from './Calification';
 import { Link } from 'react-router-dom';
 
