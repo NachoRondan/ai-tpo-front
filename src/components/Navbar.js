@@ -69,6 +69,7 @@ const Navbar = ({user}) => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              style={{zIndex:1252}}
             >
               {settings.map((setting) => (
                 

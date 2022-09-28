@@ -7,7 +7,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-
+import MobileSideBar from "./MobileSideBar"
 
 const subjects = getSubjects()
 
@@ -22,11 +22,16 @@ const calificationOptions = [
 
 export default function SidebarFilter() {
     return (
-      <Box sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
-        <NestedMenuFilter filterName='Materias' filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}/>
-        <NestedBooleanFilter filterName='Tipo de Clase' filterIcon={<GroupOutlinedIcon/>} options={['Individual','Grupal']}/>
-        <NestedBooleanFilter filterName='Frecuencia' filterIcon={<AccessAlarmIcon style={{ color: '#F52F41' }}/>} options={['Unica','Semanal','Mensual']}/>
-        <NestedBooleanFilter filterName='Calificacion' filterIcon={<StarRateIcon style={{ color: '#fabb05' }}/>} options={calificationOptions}/>
-      </Box> 
+      <>
+        <Box minWidth={199} sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
+          <NestedMenuFilter filterName='Materias' filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}/>
+          <NestedBooleanFilter filterName='Tipo de Clase' filterIcon={<GroupOutlinedIcon/>} options={['Individual','Grupal']}/>
+          <NestedBooleanFilter filterName='Frecuencia' filterIcon={<AccessAlarmIcon style={{ color: '#F52F41' }}/>} options={['Unica','Semanal','Mensual']}/>
+          <NestedBooleanFilter filterName='Calificacion' filterIcon={<StarRateIcon style={{ color: '#fabb05' }}/>} options={calificationOptions}/>
+        </Box>
+        <Box sx={{display:{xs:'block', sm:'none'}}}>
+          <MobileSideBar/>
+        </Box>
+      </>
     )
 }
