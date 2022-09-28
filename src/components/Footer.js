@@ -2,7 +2,9 @@ import { Container, Grid, Box, Typography } from "@mui/material";
 
 export default function Footer(){
     return(
-        <Box px={{xs:3, sm:3}} py={{xs:3, sm:3}} bgcolor="text.secondary" color='white'>
+        <Box px={{xs:3, sm:3}} py={{xs:3, sm:3}} 
+            bgcolor="text.secondary" color='white'
+        >
             <Container>
                 <Grid container spacing={5}>
                     <Grid item xs={12} sm={4}>

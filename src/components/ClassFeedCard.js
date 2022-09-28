@@ -19,11 +19,11 @@ export default function ClassFeedCard(props) {
         }
         title={props.course.className}
         subheader={props.profesor.name + ' ' + props.profesor.lastname}
-        subheaderTypographyProps={{display:{xs: 'none', md:'block'}}}
+        subheaderTypographyProps={{display:{xs: 'none', lg:'block'}}}
       />
       <CardMedia
         component="img"
-        height="194"
+        height="150"
         image={props.course.picture}
       />
       <CardActions disableSpacing>
