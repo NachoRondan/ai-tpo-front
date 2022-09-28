@@ -19,14 +19,15 @@ export default function NestedMenuFilter(props){
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
-      aria-labelledby="nested-list-subheader"
+      aria-labelledby="nested-list-subheader" 
+        style={{zIndex:1252}}
     >
-      <ListItemButton onClick={handleClick}>        
+      <ListItemButton onClick={handleClick} >        
         <ListItemText primary={props.filterName} />
         {props.filterIcon}
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto" unmountOnExit  >
         <Autocomplete
         disablePortal
         id="combo-box-demo"

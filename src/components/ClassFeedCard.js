@@ -4,7 +4,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import { red } from '@mui/material/colors';
 import Calification from './Calification';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +14,7 @@ export default function ClassFeedCard(props) {
     <Card sx={{ maxWidth: 345, maxHeight: 310 }}>
       <CardHeader
         avatar={
-          <Avatar src={props.profesor.picture} sx={{ bgcolor: red[500] }} aria-label="recipe"/>
+          <Avatar sx={{display:{xs: 'block', lg:'block'}}} src={props.profesor.picture} aria-label="recipe"/>
         }
         title={props.course.className}
         subheader={props.profesor.name + ' ' + props.profesor.lastname}

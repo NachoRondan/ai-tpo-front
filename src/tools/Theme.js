@@ -13,7 +13,16 @@ let Theme = createTheme({
     zIndex: {
         appBar: 1251,
         modal: -1,
-    }
+    },
+    breakpoints: {
+        values: {
+          xs: 0,
+          sm: 630,
+          md: 900,
+          lg: 1200,
+          xl: 1536,
+        },
+      },
 })
 
 export default Theme

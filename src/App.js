@@ -15,7 +15,7 @@ function App() {
   const [user, setUser] = useState(null)
   return (
     <BrowserRouter>
-      <Navbar/>
+      <Navbar user={user}/>
       <Box bgcolor='#ebebeb' sx={{width:1, height:1}}>
         <Routes>
           <Route path="/" >

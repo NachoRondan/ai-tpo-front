@@ -6,7 +6,6 @@ import getCourses from "../assets/MockUpVariables/MockUpCourses"
 const courses = getCourses()
 
 export default function Home({user}) {
-  if(!user){
     return (
       <Container>
         <Stack direction='row' justifyContent='space-between' spacing={1}>
@@ -16,5 +15,3 @@ export default function Home({user}) {
       </Container>
     )
   }
-  return <>Home with user</>
-}
