@@ -4,6 +4,7 @@ export default function Footer(){
     return(
         <Box px={{xs:3, sm:3}} py={{xs:3, sm:3}} 
             bgcolor="text.secondary" color='white'
+            sx={{display:{xs:'none', sm:'block'}}}
         >
             <Container>
                 <Grid container spacing={5}>
