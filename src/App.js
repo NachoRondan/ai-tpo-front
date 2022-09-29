@@ -24,13 +24,13 @@ function App() {
       <Box bgcolor='#ebebeb' sx={{width:1, height:1}}>
         <Routes>
           <Route path="/" >
+            <Route index element={<Landing  />}/>
             <Route path="home" element={<Home user={user}/>}/>
             <Route path="login" element={<Login setUser={setUser}/>}/>
             <Route path="registro" element={<Registro  />}/>
             <Route path="registroAlumno" element={<RegistroAlumno  />}/>
             <Route path="registroProfesor" element={<RegistroProfesor  />}/>
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
-            <Route index element={<Landing  />}/>
             <Route path="clase">
               <Route path=':courseId' element={<Course user={user} />}>
                 <Route path="contratacion" element={
