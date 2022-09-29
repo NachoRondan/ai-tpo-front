@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 export default function ClassFeedCard(props) {
   
   return (
-    <Link to={'clase/'+ props.course.courseId} style={{ textDecoration: 'none', color: 'unset' }}>
+    <Link to={'/clase/'+ props.course.courseId} style={{ textDecoration: 'none', color: 'unset' }}>
     <Card sx={{ maxWidth: 345, maxHeight: 310 }}>
       <CardHeader
         avatar={
