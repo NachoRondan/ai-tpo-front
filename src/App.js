@@ -9,6 +9,11 @@ import Error from './pages/Error'
 import ProtectedRoute from "./tools/ProtectedRoute";
 import Contratacion from './pages/Contratacion'
 import { Box, } from "@mui/material"
+import { Registro } from "./components/Registro";
+import { RegistroAlumno } from "./components/RegistroAlumno";
+import { RegistroProfesor } from "./components/RegistroProfesor";
+import { Landing } from "./components/Landing";
+import { RecuperarClave } from "./components/RecuperarClave";
 
 
 function App() {
@@ -19,8 +24,13 @@ function App() {
       <Box bgcolor='#ebebeb' sx={{width:1, height:1}}>
         <Routes>
           <Route path="/" >
-            <Route index element={<Home user={user}/>}/>
+            <Route index element={<Landing  />}/>
+            <Route path="home" element={<Home user={user}/>}/>
             <Route path="login" element={<Login setUser={setUser}/>}/>
+            <Route path="registro" element={<Registro  />}/>
+            <Route path="registroAlumno" element={<RegistroAlumno  />}/>
+            <Route path="registroProfesor" element={<RegistroProfesor  />}/>
+            <Route path="recuperarClave" element={<RecuperarClave  />}/>
             <Route path="clase">
               <Route path=':courseId' element={<Course user={user} />}>
                 <Route path="contratacion" element={
