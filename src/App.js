@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Clase from './pages/Clase'
+import Course from './pages/Course'
 import Error from './pages/Error'
 import ProtectedRoute from "./tools/ProtectedRoute";
 import Contratacion from './pages/Contratacion'
@@ -22,7 +22,7 @@ function App() {
             <Route index element={<Home user={user}/>}/>
             <Route path="login" element={<Login setUser={setUser}/>}/>
             <Route path="clase">
-              <Route path=':claseId' element={<Course user={user} />}>
+              <Route path=':courseId' element={<Course user={user} />}>
                 <Route path="contratacion" element={
                   <ProtectedRoute user={user}>
                     <Contratacion user={user}/>
