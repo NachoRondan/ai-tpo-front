@@ -25,7 +25,7 @@ return (<Container component="main" maxWidth="xs">
 <Typography sx={{color:'black',fontSize:24}}>
     Bienvenido a la web de Sitio Institucional! En esta web podra registrarse como alumno o profesor. Una vez registrados, los profesores podran crear clases de distintos tipos de modalidades y costos y los alumnos podran inscribirse a ellas. La plataforma tambien tiene un sistema de califcacion de clases y comentarios.
 </Typography>
-<Button sx={{marginTop:"1rem",maringBottom:"1rem",padding:"1rem",borderRadius:"12px",backgroundColor:"#BA0C16",width:"200px"}}>
+<Button variant="outlined" sx={{marginTop:"1rem",maringBottom:"1rem",padding:"1rem",borderRadius:"12px",backgroundColor:"white",width:"200px"}}>
 Continuar
 </Button>
 </Box>
