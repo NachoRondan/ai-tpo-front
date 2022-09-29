@@ -58,7 +58,7 @@ const Navbar = ({user}) => {
               textDecoration: 'none',
             }}
           >
-            APP NAME
+            APPrender
           </Typography>          
           <Box sx={{ flexGrow: 0 }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
