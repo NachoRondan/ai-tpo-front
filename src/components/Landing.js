@@ -18,7 +18,7 @@ return (<Container component="main" maxWidth="xs">
     flexDirection: 'column',
     alignItems: 'center',
     py:8,
-    height:"100vh"
+    height:"1"
   }}
 >
 <Typography sx={{color:'black',fontSize:40}}>

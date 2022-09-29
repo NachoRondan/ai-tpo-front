@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import { Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const RegistroAlumno=()=>{
 
@@ -22,7 +23,7 @@ return (<Container component="main" maxWidth="xs">
     flexDirection: 'column',
     alignItems: 'center',
     py:8,
-    height:"100vh"
+    height:"1"
   }}
 >
 <Typography component="h1" variant="h5">
@@ -109,14 +110,16 @@ return (<Container component="main" maxWidth="xs">
             autoComplete="pregunta"
             autoFocus
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Crear Cuenta
-          </Button>
+          <Link to={'/login'} style={{ textDecoration: 'none', color: 'unset' }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Crear Cuenta
+            </Button>
+          </Link>
         </Box>
 </Box>
 </Container>)

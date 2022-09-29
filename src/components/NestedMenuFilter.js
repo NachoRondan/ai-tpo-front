@@ -20,7 +20,7 @@ export default function NestedMenuFilter(props){
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader" 
-        style={{zIndex:1252}}
+        style={{zIndex:1250}}
     >
       <ListItemButton onClick={handleClick} >        
         <ListItemText primary={props.filterName} />
