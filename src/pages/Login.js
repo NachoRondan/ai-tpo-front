@@ -67,7 +67,7 @@ export default function SignIn({setUser}) {
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Recordar Usuario"
           />
           <Button
             type="submit"
@@ -76,20 +76,20 @@ export default function SignIn({setUser}) {
             sx={{ mt: 3, mb: 2 }}
             component={Link} to={'/home'} 
           >
-            Sign In
+            Ingresar
           </Button>
           <Grid container>
             <Grid item xs>
               <Link to={"/recuperarClave"} style={{ textDecoration: 'none', color: 'unset' }}>
                 <Typography color="primary.main">
-                  Forgot password?
+                  Olvide mi contraseña
                 </Typography>
               </Link>
             </Grid>
             <Grid item>
               <Link to={"/registro"} style={{ textDecoration: 'none', color: 'unset' }}>
                 <Typography color="primary.main">
-                  Don't have an account? Sign Up
+                  Crear cuenta
                 </Typography>
               </Link>
             </Grid>
