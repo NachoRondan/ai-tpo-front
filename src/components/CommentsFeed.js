@@ -1,12 +1,11 @@
 import { Box, Button, Typography, Divider, Avatar, Grid, Paper } from "@mui/material"
-import ClassFeedCard from "./ClassFeedCard"
 //import getComments from '../assets/MockUpVariables/MockUpComments'
 import imgLink from '../assets/MockUpFiles/user1.jpg'
 
 export default function Feed(props) {
     return (
     <>
-    <Box marginBottom={1} sx={{ display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+    <Box marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
         <Typography variant="h4">Comentarios</Typography>
         <Button variant="outlined">Comentar clase</Button>
     </Box>

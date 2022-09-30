@@ -4,7 +4,8 @@ export default function Footer(){
     return(
         <Box px={{xs:3, sm:3}} py={{xs:3, sm:3}} 
             bgcolor="text.secondary" color='white'
-            sx={{display:{xs:'none', sm:'block'}}}
+            position='sticky'
+            sx={{ zIndex: 'tooltip' }}
         >
             <Container>
                 <Grid container spacing={5}>
@@ -22,7 +23,7 @@ export default function Footer(){
                             <Typography>Mail: mail@falso.com</Typography>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={4} sx={{display:{xs:'none', sm:'block'}}}>
                         <Box borderBottom={1}>
                             <Typography>Contacto</Typography>
                         </Box>
@@ -36,11 +37,11 @@ export default function Footer(){
                             <Typography>Mail: mail@falso.com</Typography>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Box borderBottom={1}>
+                    <Grid item xs={12} sm={4} sx={{display:{xs:'none', sm:'block'}}}>
+                        <Box borderBottom={1} justifyContent='center'>
                             <Typography>Contacto</Typography>
                         </Box>
-                        <Box>
+                        <Box justifyContent='center'>
                             <Typography>Tel: 4444 9999</Typography>
                         </Box>
                         <Box>
