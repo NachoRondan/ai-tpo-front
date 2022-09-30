@@ -28,7 +28,7 @@ export default function Course({user}) {
                 <Stack padding={2} spacing={2} divider={<Divider/>}>
                     <Paper elevation={3}>
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
-                            <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+                            <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{course.courseTitle}</Typography>
                                 <Button variant="outlined">Contratar Clase</Button>
                             </Box>
