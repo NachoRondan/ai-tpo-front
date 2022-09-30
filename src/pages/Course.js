@@ -50,9 +50,10 @@ export default function Course({user}) {
                                 </Card>
                                 <Container >
                                     <Stack divider={<Divider/>}>
-                                        <Box felx={12} p={2} sx={{display:'flex', justifyContent:'space-around', }}>
+                                        <Box flex={12} p={2} sx={{display:'flex', justifyContent:'space-around',}}>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} >Calificacion</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Calificacion</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Calificacion</Typography>
                                             </Box>
                                             <Box flex={6}>
                                                 <Calification calification={course.calification}/>
@@ -60,34 +61,42 @@ export default function Course({user}) {
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} >Materia</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Materia</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                            <Typography variant="h5" display='flex' flex={8} >{course.subjects[0]}</Typography>
-                                            </Box>
-                                        </Box>
-                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
-                                            <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} >Duracion</Typography>
-                                            </Box>
-                                            <Box flex={6}>
-                                            <Typography variant="h5" display='flex' flex={8} >{course.frecuency}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.subjects[0]}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.subjects[0]}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} >Tipo de Clase</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Duracion</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Duracion</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                            <Typography variant="h5" display='flex' flex={8} >{course.classType}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.frecuency}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.frecuency}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} >Costo</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Tipo de Clase</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Tipo de Clase</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                            <Typography variant="h5" display='flex' flex={8} >{'$' + course.price}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.classType}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.classType}</Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
+                                            <Box flex={6}>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Costo</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Costo</Typography>
+                                            </Box>
+                                            <Box flex={6}>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{'$' + course.price}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{'$' + course.price}</Typography>
                                             </Box>
                                         </Box>
                                     </Stack>
