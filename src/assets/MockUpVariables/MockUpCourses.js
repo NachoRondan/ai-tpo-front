@@ -12,6 +12,7 @@ export default function getCourses(){
             calification:4.5,
             picture: BBDDPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Mensual',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -22,6 +23,7 @@ export default function getCourses(){
             calification:1.7,
             picture: ScrumPicture,
             classType:'Grupal',
+            price:100,
             frecuency: 'Unica',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -32,6 +34,7 @@ export default function getCourses(){
             calification:3.4,
             picture: ExcelPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Excel']
     
@@ -43,6 +46,7 @@ export default function getCourses(){
             calification:4,
             picture: WordPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Word']
         },
@@ -53,6 +57,7 @@ export default function getCourses(){
             calification:4.5,
             picture: BBDDPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Mensual',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -63,6 +68,7 @@ export default function getCourses(){
             calification:1.7,
             picture: ScrumPicture,
             classType:'Grupal',
+            price:100,
             frecuency: 'Unica',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -73,6 +79,7 @@ export default function getCourses(){
             calification:3.4,
             picture: ExcelPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Excel']
     
@@ -84,6 +91,7 @@ export default function getCourses(){
             calification:4,
             picture: WordPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Word']
         },
@@ -94,6 +102,7 @@ export default function getCourses(){
             calification:4.5,
             picture: BBDDPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Mensual',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -104,6 +113,7 @@ export default function getCourses(){
             calification:1.7,
             picture: ScrumPicture,
             classType:'Grupal',
+            price:100,
             frecuency: 'Unica',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -114,6 +124,7 @@ export default function getCourses(){
             calification:3.4,
             picture: ExcelPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Excel']
     
@@ -125,6 +136,7 @@ export default function getCourses(){
             calification:4,
             picture: WordPicture,
             classType:'Individal',
+            price:100,
             frecuency: 'Semanal',
             subjects:['Microsoft Office','Word']
         },
