@@ -1,8 +1,9 @@
-import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
+import { Stack, Button, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
 import { useParams } from "react-router-dom"
 import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import getUsers from "../assets/MockUpVariables/MockUpUsers"
 import Calification from '../components/Calification'
+import CommentsFeed from '../components/CommentsFeed'
 
 function findCourse(courseId) {
     return getCourses().find((element) => {
@@ -27,12 +28,13 @@ export default function Course({user}) {
                 <Stack padding={2} spacing={2} divider={<Divider/>}>
                     <Paper elevation={3}>
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
-                            <Box p={2} marginBottom={1}>
+                            <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                                 <Typography variant="h3">{course.courseTitle}</Typography>
+                                <Button variant="outlined">Contratar Clase</Button>
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>
-                                <Card sx={{ maxWidth: 345 }}>
+                                <Card sx={{ maxWidth: 345, display:{xs:'none', sm:'none', md:'block'} }}>
                                     <CardHeader
                                         avatar={
                                             <Avatar src={profesor.picture}/>
@@ -48,43 +50,43 @@ export default function Course({user}) {
                                 </Card>
                                 <Container >
                                     <Stack divider={<Divider/>}>
-                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around', }}>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                        <Box felx={12} p={2} sx={{display:'flex', justifyContent:'space-around', }}>
+                                            <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} >Calificacion</Typography>
                                             </Box>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                            <Box flex={6}>
                                                 <Calification calification={course.calification}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                            <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} >Materia</Typography>
                                             </Box>
-                                            <Box sx={{display:'flex', justifyContent:'center',}}>
+                                            <Box flex={6}>
                                             <Typography variant="h5" display='flex' flex={8} >{course.subjects[0]}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                            <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} >Duracion</Typography>
                                             </Box>
-                                            <Box sx={{display:'flex', justifyContent:'center',}}>
+                                            <Box flex={6}>
                                             <Typography variant="h5" display='flex' flex={8} >{course.frecuency}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                            <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} >Tipo de Clase</Typography>
                                             </Box>
-                                            <Box sx={{display:'flex', justifyContent:'center',}}>
+                                            <Box flex={6}>
                                             <Typography variant="h5" display='flex' flex={8} >{course.classType}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
-                                            <Box sx={{display:'flex', justifyContent:'center', }}>
+                                            <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} >Costo</Typography>
                                             </Box>
-                                            <Box sx={{display:'flex', justifyContent:'center',}}>
+                                            <Box flex={6}>
                                             <Typography variant="h5" display='flex' flex={8} >{'$' + course.price}</Typography>
                                             </Box>
                                         </Box>
@@ -96,17 +98,16 @@ export default function Course({user}) {
                         <Box>
                             <Container>
                                 <Box py={2}>
-                                    <Typography variant="h5" display='flex' flex={8} >
+                                    <Typography marginBottom={2} variant="h5" display='flex' flex={8} >
                                         Descripción del Curso
                                     </Typography>
                                     <TextField
                                         id="outlined-multiline-static"
-                                        label="Multiline"
                                         fullWidth 
                                         disabled 
                                         multiline
                                         rows={4}
-                                        defaultValue="Default Value"
+                                        defaultValue={course.description}
                                     />
                                 </Box>
                             </Container>
@@ -114,9 +115,7 @@ export default function Course({user}) {
                     </Paper>
                     <Paper elevation={3}>
                     <Box p={2}>
-                    <Box>
-                    Comentarios
-                    </Box>
+                        <CommentsFeed/>
                     </Box> 
                     </Paper>
                 </Stack>
