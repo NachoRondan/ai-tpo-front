@@ -11,19 +11,22 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate, Link} from 'react-router-dom'
+import getUsers from '../assets/MockUpVariables/MockUpUsers';
 
+function findUser(userMail) {
+  return getUsers().find((element) => {
+    return element.email === userMail;
+  })
+}
 
 export default function SignIn({setUser}) {
   const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    setUser({email:data.get('email')})
-    navigate('/')
+    var user = findUser(data.get('email'))
+    setUser(user)
+    navigate('/home')
   };
 
   return (
@@ -74,7 +77,6 @@ export default function SignIn({setUser}) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            component={Link} to={'/home'} 
           >
             Ingresar
           </Button>
