@@ -7,7 +7,8 @@ import Login from "./pages/Login";
 import Course from './pages/Course'
 import Error from './pages/Error'
 import ProtectedRoute from "./tools/ProtectedRoute";
-import Contratacion from './pages/Contratacion'
+import Contratacion from './pages/Contratacion';
+import Profile from "./pages/Profile";
 import { Box, } from "@mui/material"
 import { Registro } from "./components/Registro";
 import { RegistroAlumno } from "./components/RegistroAlumno";
@@ -31,6 +32,7 @@ function App() {
             <Route path="registroAlumno" element={<RegistroAlumno  />}/>
             <Route path="registroProfesor" element={<RegistroProfesor  />}/>
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
+            <Route path="profile" element={<Profile user={user}/>}/>
             <Route path="clase">
               <Route path=':courseId' element={<Course user={user} />}>
                 <Route path="contratacion" element={
