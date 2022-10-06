@@ -25,7 +25,7 @@ const Navbar = ({user}) => {
     settings = [
       {option:'Mi Perfil', link:'/profile'},
       {option:'Cursos', link:'/my-courses'},
-      {option:'Contrataciones', link:'/contratacion'},
+      {option:'Contrataciones', link:'/contrataciones'},
       {option:'Log Out', link:'/login'}
     ];
     picture = user.picture
@@ -49,8 +49,8 @@ const Navbar = ({user}) => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component={Link}
+            to='/home'
             sx={{
               mr: 2,
               fontFamily: 'monospace',
