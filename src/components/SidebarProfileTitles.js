@@ -1,12 +1,38 @@
-import { Typography, Box } from "@mui/material";
+import { List, ListItemButton, Box, ListItemText } from "@mui/material";
 import MobileUserProfileSideBar from '../components/MobileUserProfileSideBar'
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import ContactPhoneOutlinedIcon from '@mui/icons-material/ContactPhoneOutlined';
+import { Link, } from "react-router-dom";
 
 export default function UserProfileSideBar() {
+
+  var list = [
+    {tabName:'Mis Datos', icon: <BadgeOutlinedIcon />, link:'/profile'},
+    {tabName:'Mis Cursos', icon: <SchoolOutlinedIcon />, link:'/my-courses'},
+    {tabName:'Contrataciones', icon: <ContactPhoneOutlinedIcon />, link:'/contrataciones'},
+  ]
     return (
       <>
         <Box minWidth={199} sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
-          <Typography>Mis clases</Typography>
-          <Typography>Mis Datos</Typography>
+          <List
+            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+          >
+            {list.map((tab)=>{
+              return (
+
+                <ListItemButton alignItems="center" component={Link} to={tab.link}>
+                  <Box marginRight={2}>
+                    {tab.icon}
+                  </Box>  
+                  <ListItemText primary={tab.tabName} />
+                </ListItemButton>
+              )
+            })}
+          </List>
+          <Box bgcolor="white" height={650}/>
         </Box>
         <Box sx={{display:{xs:'block', sm:'none'}}}>
           <MobileUserProfileSideBar/>

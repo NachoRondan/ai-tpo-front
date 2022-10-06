@@ -1,12 +1,12 @@
-import { Typography, Stack, Chip } from "@mui/material"
+import { Typography, Stack, Chip, Button } from "@mui/material"
 
 
 function getData(value){
     if(Array.isArray(value)){
         return(
-            <Stack direction='row' spacing={1} marginTop={1}>
+            <Stack direction={{xs:'column', sm:'row'}} spacing={1} marginTop={1}>
             {value.map((item, index) => (
-                <Chip label= {value[index]}/>
+                <Chip label={value[index]} color="secondary" variant="outlined" />
             ))}
             </Stack>
         )
@@ -22,7 +22,12 @@ function getData(value){
 export default function UserData(props) {
     return (
         <Stack>
-            <Typography variant="h5">{props.title}</Typography>
+            <Stack direction='row' justifyContent="space-between">
+                <Typography variant='h5' display={{xs:'none',sm:'block'}}>{props.title}</Typography>
+                <Typography variant='h6' display={{xs:'block',sm:'none'}}>{props.title}</Typography>
+                <Button variant="contained" color="secondary" sx={{display:{xs:'none',sm:'block'}}}>Modificar</Button>
+                <Button variant="contained" color="secondary" sx={{display:{xs:'flex',sm:'none'}, maxHeight:'35px', maxWidth:'87px'}}>Modificar</Button>
+            </Stack>
             {getData(props.value)}
         </Stack>
     )

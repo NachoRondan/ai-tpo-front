@@ -34,14 +34,10 @@ function App() {
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
             <Route path="profile" element={<Profile user={user}/>}/>
             <Route path="clase">
-              <Route path=':courseId' element={<Course user={user} />}>
-                <Route path="contratacion" element={
-                  <ProtectedRoute user={user}>
-                    <Contratacion user={user}/>
-                  </ProtectedRoute>
-                }
-                />
-              </Route>
+              <Route path=':courseId' element={<Course user={user} />}/>
+            </Route>
+            <Route path="contrataciones" element={<Contratacion user={user}/>}>
+              <Route path=':contratacionId' element={<Course user={user} />}/>
             </Route>
             <Route to='mis-clases' element={
               <ProtectedRoute user={user}>

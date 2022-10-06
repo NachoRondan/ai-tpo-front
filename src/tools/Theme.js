@@ -1,13 +1,20 @@
 import { createTheme } from "@mui/material";
 
 const mainRedColor = '#F52F41'
-
+const mainSecondaryColor = '#2b1a46'
+const mainSuccessColor = '#eaefc9'
 
 let Theme = createTheme({
     palette: {
 
         primary: {
             main: mainRedColor,
+        },
+        secondary:{
+            main: mainSecondaryColor,
+        },
+        success:{
+            main: mainSuccessColor,
         },
     },
     zIndex: {
