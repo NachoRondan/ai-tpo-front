@@ -20,6 +20,7 @@ const Navbar = ({user}) => {
     {option:'Contrataciones', link:'/login'},
     {option:'Log in', link:'/login'}
   ];
+  let picture = ""
   if(user){
     settings = [
       {option:'Mi Perfil', link:'/profile'},
@@ -27,6 +28,7 @@ const Navbar = ({user}) => {
       {option:'Contrataciones', link:'/contratacion'},
       {option:'Log Out', link:'/login'}
     ];
+    picture = user.picture
   }
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -62,7 +64,7 @@ const Navbar = ({user}) => {
           </Typography>          
           <Box sx={{ flexGrow: 0 }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={user.picture} />
+                <Avatar src={picture} />
               </IconButton>
             <Menu
               sx={{ mt: '45px' }}
