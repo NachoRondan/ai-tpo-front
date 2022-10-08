@@ -4,6 +4,7 @@ import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import getUsers from "../assets/MockUpVariables/MockUpUsers"
 import Calification from '../components/Calification'
 import CommentsFeed from '../components/CommentsFeed'
+import HireClassButton from "../components/HireClassButton"
 
 function findCourse(courseId) {
     return getCourses().find((element) => {
@@ -30,7 +31,7 @@ export default function Course({user}) {
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{course.courseTitle}</Typography>
-                                <Button variant="outlined">Contratar Clase</Button>
+                                <HireClassButton/>
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>

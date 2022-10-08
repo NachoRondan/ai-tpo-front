@@ -16,6 +16,20 @@ export default function NestedBooleanFilter(props){
     setOpen(!open);
   };
 
+  const handleFilter = (event) => {
+    let aux_courses = []
+    
+    if (event.target.checked){
+      for (let i = 0; i < props.courses.length; i++) {
+        if(props.courses[i].classType === event.target.value){
+          aux_courses.push(props.courses[i])
+        }
+      }
+    }
+    console.log(props.courses)
+    props.setCourses(aux_courses)
+  }
+  
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -31,7 +45,7 @@ export default function NestedBooleanFilter(props){
      <FormGroup sx={{ pl: 4 }}>
         {props.options.map((option)=>{
             return(
-                <FormControlLabel control={<Checkbox  />} label= {option}/>
+                <FormControlLabel control={<Checkbox value={option} onChange={handleFilter}/>} label= {option}/>
             )
         })}
         

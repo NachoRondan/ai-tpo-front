@@ -1,13 +1,15 @@
 import { Box, Button, Typography, Divider, Avatar, Grid, Paper } from "@mui/material"
 //import getComments from '../assets/MockUpVariables/MockUpComments'
 import imgLink from '../assets/MockUpFiles/user1.jpg'
+import NewCommentButton from "./NewCommentButton"
+
 
 export default function Feed(props) {
     return (
     <>
     <Box marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
         <Typography variant="h4">Comentarios</Typography>
-        <Button variant="outlined">Comentar clase</Button>
+        <NewCommentButton/>
     </Box>
     
    <Box marginBottom={2}><Divider/></Box>
