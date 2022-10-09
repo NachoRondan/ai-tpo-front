@@ -15,7 +15,7 @@ import { RegistroAlumno } from "./components/RegistroAlumno";
 import { RegistroProfesor } from "./components/RegistroProfesor";
 import { Landing } from "./components/Landing";
 import { RecuperarClave } from "./components/RecuperarClave";
-
+import MyCourses from "./pages/MyCourses";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -33,6 +33,7 @@ function App() {
             <Route path="registroProfesor" element={<RegistroProfesor  />}/>
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
             <Route path="profile" element={<Profile user={user}/>}/>
+            <Route path="my-courses" element={<MyCourses user={user}/>}/>
             <Route path="clase">
               <Route path=':courseId' element={<Course user={user} />}/>
             </Route>
