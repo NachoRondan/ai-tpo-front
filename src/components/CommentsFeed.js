@@ -1,4 +1,4 @@
-import { Box, Button, Typography, Divider, Avatar, Grid, Paper } from "@mui/material"
+import { Box, Typography, Divider, Avatar, Grid, Paper } from "@mui/material"
 //import getComments from '../assets/MockUpVariables/MockUpComments'
 import imgLink from '../assets/MockUpFiles/user1.jpg'
 import NewCommentButton from "./NewCommentButton"

@@ -1,4 +1,4 @@
-import { Stack, Button, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
+import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
 import { useParams } from "react-router-dom"
 import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import getUsers from "../assets/MockUpVariables/MockUpUsers"
