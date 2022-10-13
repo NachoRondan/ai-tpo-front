@@ -1,6 +1,8 @@
-import { Stack, Paper, Box, Container, Typography, Divider } from "@mui/material"
+import { Stack, Box, Container, Divider } from "@mui/material"
 import getCourses from "../assets/MockUpVariables/MockUpCourses"
-import HireClassButton from "../components/HireClassButton"
+import EditCourse from "../components/EditCourse"
+
+const courses = getCourses()
 
 
 export default function MyCourses({user}) {
@@ -9,14 +11,11 @@ export default function MyCourses({user}) {
         <Box flex={12} >
             <Container>
                 <Stack padding={2} spacing={2} divider={<Divider/>}>
-                    <Paper elevation={3}>
-                        <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
-                            <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
-                                <Typography variant="h3">Titulo</Typography>
-                                <HireClassButton/>
-                            </Box>
-                        </Box>
-                    </Paper>
+                    {courses.filter(course => course.profesorId === user.userId).map((course) => {
+                        return(
+                            <EditCourse course={course} />
+                        )
+                    })}
                 </Stack>
             </Container>
         </Box>
