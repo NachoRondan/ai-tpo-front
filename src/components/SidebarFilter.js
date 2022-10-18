@@ -25,8 +25,18 @@ export default function SidebarFilter({setCourses, courses, classFrecuencyFilter
       <>
         <Box minWidth={199} sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
           <NestedMenuFilter filterName='Materias' setCourses={setCourses} filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}/>
-          <NestedBooleanFilter filterName='Tipo de Clase' filter={classTypeFilter}  filterFunction={setClassTypeFilter} courses={courses} setCourses={setCourses} filterIcon={<GroupOutlinedIcon/>} options={['Individual','Grupal']}/>
-          <NestedBooleanFilter filterName='Frecuencia' filter={classFrecuencyFilter}  filterFunction={setClassFrecuencyFilter} setCourses={setCourses} filterIcon={<AccessAlarmIcon style={{ color: '#F52F41' }}/>} options={['Unica','Semanal','Mensual']}/>
+          <NestedBooleanFilter filterName='Tipo de Clase' filterIcon={<GroupOutlinedIcon/>}
+            filter={classTypeFilter}
+            filterFunction={setClassTypeFilter}
+            setCourses={setCourses}
+            options={['Individual','Grupal']}
+          />
+          <NestedBooleanFilter filterName='Frecuencia' filterIcon={<AccessAlarmIcon style={{ color: '#F52F41' }}/>}
+            filter={classFrecuencyFilter}  
+            filterFunction={setClassFrecuencyFilter}
+            setCourses={setCourses}
+            options={['Unica','Semanal','Mensual']}
+          />
           <NestedBooleanFilter filterName='Calificacion' setCourses={setCourses} filterIcon={<StarRateIcon style={{ color: '#fabb05' }}/>} options={calificationOptions}/>
         </Box>
         <Box sx={{display:{xs:'block', sm:'none'}}}>
