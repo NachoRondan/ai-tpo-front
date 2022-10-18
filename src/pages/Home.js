@@ -17,6 +17,9 @@ export default function Home({user}) {
 
 
   function filterClassType(course){
+    if(classTypeFilter.length === 0){
+      return course
+    }
     for (let index = 0; index < classTypeFilter.length; index++) {
       if(course.classType === classTypeFilter[index]){
         return course
@@ -25,7 +28,9 @@ export default function Home({user}) {
   }
 
   function filterClassFrecuency(course){
-    console.log(classFrecuencyFilter)
+    if(classFrecuencyFilter.length === 0){
+      return course
+    }
     for (let index = 0; index < classFrecuencyFilter.length; index++) {
       if(course.frecuency === classFrecuencyFilter[index]){
         return course
@@ -40,7 +45,7 @@ export default function Home({user}) {
   }
 
   function areFiltersEmpty(){
-    if(classTypeFilter.length === 0){
+    if(classTypeFilter.length === 0 && filterClassType.length === 0){
       return true
     }
   }
