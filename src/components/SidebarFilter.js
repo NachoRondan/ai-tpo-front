@@ -20,12 +20,15 @@ const calificationOptions = [
 
 ]
 
-export default function SidebarFilter({setCourses, calificationFilter, setCalificationFilter, classFrecuencyFilter, setClassFrecuencyFilter, classTypeFilter, setClassTypeFilter}) {
+export default function SidebarFilter({setCourses, subjectFilter, setSubjectFilter, calificationFilter, setCalificationFilter, classFrecuencyFilter, setClassFrecuencyFilter, classTypeFilter, setClassTypeFilter}) {
     return (
       <>
         <Box minWidth={199} sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
-          <NestedMenuFilter filterName='Materias' setCourses={setCourses} filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}
-            
+          <NestedMenuFilter filterName='Materias' filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} 
+            setCourses={setCourses}
+            filter={subjectFilter}
+            filterFunction={setSubjectFilter}
+            options={subjects}    
           />
           <NestedBooleanFilter filterName='Tipo de Clase' filterIcon={<GroupOutlinedIcon/>}
             filter={classTypeFilter}

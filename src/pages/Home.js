@@ -15,7 +15,7 @@ export default function Home({user}) {
   const [classTypeFilter, setClassTypeFilter] = useState([])
   const [classFrecuencyFilter, setClassFrecuencyFilter] = useState([])
   const [calificationFilter, setCalificationFilter] = useState([])
-
+  const [subjectFilter, setSubjectFilter] = useState('')
 
   function filterClassType(course){
     if(classTypeFilter.length === 0){
@@ -40,7 +40,6 @@ export default function Home({user}) {
   }
 
   function filterClassCalification(course){
-    console.log(calificationFilter)
     if(calificationFilter.length === 0){
       return course
     }
@@ -50,15 +49,26 @@ export default function Home({user}) {
       }
     }
   }
+
+  function filterSubject(course){
+    if(subjectFilter === ''){
+      return course
+    }
+    for (let index = 0; index < course.subjects.length; index++) {
+      if(course.subjects[index] === subjectFilter){
+        return course
+      }
+    }
+  }
   
   function filterCourse(course){
-    if(filterClassFrecuency(course) && filterClassType(course) && filterClassCalification(course)){
+    if(filterClassFrecuency(course) && filterClassType(course) && filterClassCalification(course) && filterSubject(course)){
       return course
     }
   }
 
   function areFiltersEmpty(){
-    if(classTypeFilter.length === 0 && filterClassType.length === 0 && filterClassCalification.length === 0 ){
+    if(classTypeFilter.length === 0 && filterClassType.length === 0 && filterClassCalification.length === 0 && filterSubject === ''){
       return true
     }
   }
@@ -81,6 +91,7 @@ export default function Home({user}) {
           classTypeFilter={classTypeFilter} setClassTypeFilter={setClassTypeFilter}
           classFrecuencyFilter={classFrecuencyFilter} setClassFrecuencyFilter={setClassFrecuencyFilter}
           calificationFilter={calificationFilter} setCalificationFilter={setCalificationFilter}
+          subjectFilter={subjectFilter} setSubjectFilter={setSubjectFilter}
         />
         <Feed courses={filterCourses()}/>
       </Stack>

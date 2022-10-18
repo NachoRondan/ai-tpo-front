@@ -10,10 +10,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function NestedMenuFilter(props){
   const [open, setOpen] = React.useState(true);
-
   const handleClick = () => {
     setOpen(!open);
   };
+
+  const handleFilter = (event, value) => {
+    props.filterFunction(value)
+  }
 
   return (
     <List
@@ -29,11 +32,12 @@ export default function NestedMenuFilter(props){
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit  >
         <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={props.options}
-        sx={{ width: 3/4, display:'flex', pl:4 }}
-        renderInput={(params) => <TextField {...params} label={'Buscar...'} />}
+          disablePortal
+          id="combo-box-demo"
+          onInputChange={handleFilter}
+          options={props.options}
+          sx={{ width: 3/4, display:'flex', pl:4 }}
+          renderInput={(params) => <TextField {...params} label={'Buscar...'} />}
         />
       </Collapse>
     </List>

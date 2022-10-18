@@ -12,7 +12,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 export default function NestedBooleanFilter(props){
   const [open, setOpen] = React.useState(true);
-  const [aux_courses, setAux_courses] = React.useState([]);
+  const [filterList, setFilterList] = React.useState([]);
   let filtered = []
   const handleClick = () => {
     setOpen(!open);
@@ -21,14 +21,14 @@ export default function NestedBooleanFilter(props){
   const handleFilter = (event) => {
 
     if (event.target.checked){
-      filtered = aux_courses.map((x) => x)
+      filtered = filterList.map((x) => x)
       filtered.push(event.target.value)
     }
     else{
-      filtered = aux_courses.filter((item) => item !== event.target.value)
+      filtered = filterList.filter((item) => item !== event.target.value)
     }
     props.filterFunction(filtered)
-    setAux_courses(filtered)
+    setFilterList(filtered)
   }
   
   return (
