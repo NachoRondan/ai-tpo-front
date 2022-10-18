@@ -12,32 +12,39 @@ import MobileSideBar from "./MobileSideBar"
 const subjects = getSubjects()
 
 const calificationOptions = [
-    <Calification calification={1}/>,
-    <Calification calification={2}/>,
-    <Calification calification={3}/>,
-    <Calification calification={4}/>,
-    <Calification calification={5}/>,
+    {label:<Calification calification={1}/>, value:1},
+    {label:<Calification calification={2}/>, value:2},
+    {label:<Calification calification={3}/>, value:3},
+    {label:<Calification calification={4}/>, value:4},
+    {label:<Calification calification={5}/>, value:5},
 
 ]
 
-export default function SidebarFilter({setCourses, courses, classFrecuencyFilter, setClassFrecuencyFilter, classTypeFilter, setClassTypeFilter}) {
+export default function SidebarFilter({setCourses, calificationFilter, setCalificationFilter, classFrecuencyFilter, setClassFrecuencyFilter, classTypeFilter, setClassTypeFilter}) {
     return (
       <>
         <Box minWidth={199} sx={{borderRadius: '16px', display:{xs:'none', sm:'block'}, height: '100%', }} marginTop={2} flex={3} >
-          <NestedMenuFilter filterName='Materias' setCourses={setCourses} filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}/>
+          <NestedMenuFilter filterName='Materias' setCourses={setCourses} filterIcon={<SearchOutlinedIcon style={{ color: '#F52F41' }}/>} options={subjects}
+            
+          />
           <NestedBooleanFilter filterName='Tipo de Clase' filterIcon={<GroupOutlinedIcon/>}
             filter={classTypeFilter}
             filterFunction={setClassTypeFilter}
             setCourses={setCourses}
-            options={['Individual','Grupal']}
+            options={[{label:'Individual', value:'Individual'},{label:'Grupal', value:'Grupal'}]}
           />
           <NestedBooleanFilter filterName='Frecuencia' filterIcon={<AccessAlarmIcon style={{ color: '#F52F41' }}/>}
             filter={classFrecuencyFilter}  
             filterFunction={setClassFrecuencyFilter}
             setCourses={setCourses}
-            options={['Unica','Semanal','Mensual']}
+            options={[{label:'Unica', value:'Unica'},{label:'Semanal', value:'Semanal'},{label:'Mensual', value:'Mensual'}]}
           />
-          <NestedBooleanFilter filterName='Calificacion' setCourses={setCourses} filterIcon={<StarRateIcon style={{ color: '#fabb05' }}/>} options={calificationOptions}/>
+          <NestedBooleanFilter filterName='Calificacion' filterIcon={<StarRateIcon style={{ color: '#fabb05' }}/>}
+            filter={calificationFilter}  
+            filterFunction={setCalificationFilter}
+            setCourses={setCourses}  
+            options={calificationOptions}
+          />
         </Box>
         <Box sx={{display:{xs:'block', sm:'none'}}}>
           <MobileSideBar/>
