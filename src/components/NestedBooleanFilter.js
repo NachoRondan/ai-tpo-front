@@ -9,25 +9,26 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
+
 export default function NestedBooleanFilter(props){
   const [open, setOpen] = React.useState(true);
-
+  const [filterList, setFilterList] = React.useState([]);
+  let filtered = []
   const handleClick = () => {
     setOpen(!open);
   };
 
   const handleFilter = (event) => {
-    let aux_courses = []
-    
+
     if (event.target.checked){
-      for (let i = 0; i < props.courses.length; i++) {
-        if(props.courses[i].classType === event.target.value){
-          aux_courses.push(props.courses[i])
-        }
-      }
+      filtered = filterList.map((x) => x)
+      filtered.push(event.target.value)
     }
-    console.log(props.courses)
-    props.setCourses(aux_courses)
+    else{
+      filtered = filterList.filter((item) => item !== event.target.value)
+    }
+    props.filterFunction(filtered)
+    setFilterList(filtered)
   }
   
   return (
@@ -45,7 +46,7 @@ export default function NestedBooleanFilter(props){
      <FormGroup sx={{ pl: 4 }}>
         {props.options.map((option)=>{
             return(
-                <FormControlLabel control={<Checkbox value={option} onChange={handleFilter}/>} label= {option}/>
+                <FormControlLabel control={<Checkbox value={option.value} onChange={handleFilter}/>} label= {option.label}/>
             )
         })}
         
