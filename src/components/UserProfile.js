@@ -1,21 +1,26 @@
 import { Stack, Box, Container, Paper, Divider } from "@mui/material";
+import { useState } from "react";
 import UserData from "./UserData";
 
-
-
-
-
-
 export default function UserProfile({user}) {
+    const [name, setName] = useState(user.name)
+    const [lastname, setLastname] = useState(user.lastname)
+    const [birthday, setBirthday] = useState(user.birthday)
+    const [email, setEmail] = useState(user.email)
+    const [finishedStudies, setFinishedStudies] = useState(user.finishedStudies)
+    const [onGoingStudies, setOnGoingStudies] = useState(user.onGoingStudies)
+    const [workExperience, setWorkExperience] = useState(user.workExperience)
+    const [educationTitles, setEducationTitles] = useState(user.educationTitles)
+    
     var data_list = [
-        {title:'Nombre', value: user.name, function: ''},
-        {title:'Apellido', value: user.lastname, function: ''},
-        {title:'Fecha de Nacimiento', value: user.birthday, function: ''},
-        {title:'Email', value: user.email, function: ''},
-        {title:'Estudios Finalizados', value: user.finishedStudies, function: ''},
-        {title:'Estudios En Curso', value: user.onGoingStudies, function: ''},
-        {title:'Experiencia', value: user.workExperience, function: ''},
-        {title:'Titulos', value: user.educationTitles, function: ''},
+        {title:'Nombre', value: name, function: setName, options: ''},
+        {title:'Apellido', value: lastname, function: setLastname, options: ''},
+        {title:'Fecha de Nacimiento', value: birthday, function: setBirthday, options: ''},
+        {title:'Email', value: email, function: setEmail, options: ''},
+        {title:'Estudios Finalizados', value: finishedStudies, function: setFinishedStudies, options: ['Primario', 'Secundario', 'Terciario', 'Universitario']},
+        {title:'Estudios En Curso', value: onGoingStudies, function: setOnGoingStudies, options: ['Primario', 'Secundario', 'Terciario', 'Universitario']},
+        {title:'Experiencia', value: workExperience, function: setWorkExperience, options: ['Primario', 'Secundario', 'Terciario', 'Universitario']},
+        {title:'Titulos', value: educationTitles, function:setEducationTitles, options: ['Primario', 'Secundario', 'Terciario', 'Universitario']},
     ]
 
     return (
@@ -25,9 +30,8 @@ export default function UserProfile({user}) {
                 <Stack padding={2} spacing={2} divider={<Divider/>}>
                     {data_list.map((data_item)=>(
                         <UserData 
-                            title={data_item.title} 
+                            data={data_item}
                             value={data_item.value}
-                            function={data_item.function}
                         />
                     ))}
                 </Stack>

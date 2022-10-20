@@ -1,34 +1,35 @@
-import { Typography, Stack, Chip, Button } from "@mui/material"
+import { Typography, Stack, Chip, } from "@mui/material"
+import { useState } from "react"
+import ModifyDataButton from "./ModifyDataButton"
 
 
-function getData(value){
-    if(Array.isArray(value)){
-        return(
-            <Stack direction={{xs:'column', sm:'row'}} spacing={1} marginTop={1}>
-            {value.map((item, index) => (
-                <Chip label={value[index]} color="secondary" variant="outlined" />
-            ))}
-            </Stack>
-        )
+
+
+export default function UserData({data, value}) {
+    function getData(data){
+        if(Array.isArray(data.value)){
+            return(
+                <Stack direction={{xs:'column', sm:'row'}} spacing={1} marginTop={1}>
+                {value.map((item) => (
+                    <Chip label={item} color="secondary" variant="outlined" />
+                ))}
+                </Stack>
+            )
+        }
+        else{
+            return(
+                <Typography variant="body1">{data.value}</Typography>
+            )
+        }
     }
-    else{
-        return(
-            <Typography variant="body1">{value}</Typography>
-        )
-    }
-}
-
-
-export default function UserData(props) {
-    return (
+      return (
         <Stack>
             <Stack direction='row' justifyContent="space-between">
-                <Typography variant='h5' display={{xs:'none',sm:'block'}}>{props.title}</Typography>
-                <Typography variant='h6' display={{xs:'block',sm:'none'}}>{props.title}</Typography>
-                <Button variant="contained" color="secondary" sx={{display:{xs:'none',sm:'block'}}}>Modificar</Button>
-                <Button variant="contained" color="secondary" sx={{display:{xs:'flex',sm:'none'}, maxHeight:'35px', maxWidth:'87px'}}>Modificar</Button>
+                <Typography variant='h5' display={{xs:'none',sm:'block'}}>{data.title}</Typography>
+                <Typography variant='h6' display={{xs:'block',sm:'none'}}>{data.title}</Typography>
+                <ModifyDataButton data={data} />
             </Stack>
-            {getData(props.value)}
+            {getData(data)}
         </Stack>
     )
 }
