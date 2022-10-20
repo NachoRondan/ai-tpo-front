@@ -2,6 +2,7 @@ import { Paper, Box, List, ListItem, ListItemText, IconButton, Typography, Conta
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import AlertDeleteCourse from "./AlertDeleteCourse";
 import AlertPausedCourse from "./AlertPausedCourse";
+import { Link } from "react-router-dom";
 
 export default function EditCoursesHome({course,}) {
  
@@ -25,9 +26,11 @@ export default function EditCoursesHome({course,}) {
                             <List >
                                 <ListItem
                                         secondaryAction={
-                                            <IconButton size="large" edge="end" color='secondary'>
-                                                <EditOutlinedIcon />
-                                            </IconButton>
+                                            <Link to={'/edit-course/'+ course.courseId} style={{ textDecoration: 'none', color: 'unset' }}>
+                                                <IconButton size="large" edge="end" color='secondary'>
+                                                    <EditOutlinedIcon />
+                                                </IconButton>
+                                            </Link>
                                         }
                                     >
                                     <ListItemText
