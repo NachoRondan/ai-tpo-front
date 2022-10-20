@@ -1,10 +1,10 @@
 import { Paper, Box, List, ListItem, ListItemText, IconButton, Typography, Container, Divider, Card, CardActionArea, CardMedia,} from "@mui/material"
-import DeleteIcon from '@mui/icons-material/Delete';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import PauseCircleOutlineOutlinedIcon from '@mui/icons-material/PauseCircleOutlineOutlined';
+import AlertDeleteCourse from "./AlertDeleteCourse";
+import AlertPausedCourse from "./AlertPausedCourse";
 
-export default function EditCourse({course}) {
-
+export default function EditCoursesHome({course,}) {
+ 
     return (
         <Paper elevation={3}>
             <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
@@ -37,9 +37,7 @@ export default function EditCourse({course}) {
                                 <Divider/>
                                 <ListItem
                                         secondaryAction={
-                                            <IconButton size="large" edge="end" color='warning'>
-                                                <PauseCircleOutlineOutlinedIcon />
-                                            </IconButton>
+                                            <AlertPausedCourse course={course}/>
                                         }
                                     >
                                     <ListItemText
@@ -49,9 +47,7 @@ export default function EditCourse({course}) {
                                 <Divider/>
                                 <ListItem
                                     secondaryAction={
-                                        <IconButton size="large" edge="end" color='primary'>
-                                            <DeleteIcon />
-                                        </IconButton>
+                                        <AlertDeleteCourse />
                                     }
                                 >
                                 <ListItemText
