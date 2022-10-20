@@ -14,6 +14,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Mensual',
+            paused: false,
             description:'Una descripcion',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -26,6 +27,7 @@ export default function getCourses(){
             classType:'Grupal',
             price:100,
             frecuency: 'Unica',
+            paused: false,
             description:'Una descripcion',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -38,6 +40,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Excel']
     
@@ -51,6 +54,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Word']
         },
@@ -63,6 +67,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Mensual',
+            paused: false,
             description:'Una descripcion',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -75,6 +80,7 @@ export default function getCourses(){
             classType:'Grupal',
             price:100,
             frecuency: 'Unica',
+            paused: false,
             description:'Una descripcion',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -87,6 +93,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Excel']
     
@@ -100,6 +107,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Word']
         },
@@ -112,6 +120,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Mensual',
+            paused: false,
             description:'Una descripcion',
             subjects:['Bases de Datos','SQL'],    
         },
@@ -124,6 +133,7 @@ export default function getCourses(){
             classType:'Grupal',
             price:100,
             frecuency: 'Unica',
+            paused: false,
             description:'Una descripcion',
             subjects:['Metodologias Agiles','Scrum']
         },
@@ -136,6 +146,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Excel']
     
@@ -149,6 +160,7 @@ export default function getCourses(){
             classType:'Individual',
             price:100,
             frecuency: 'Semanal',
+            paused: false,
             description:'Una descripcion',
             subjects:['Microsoft Office','Word']
         },

@@ -24,7 +24,7 @@ export default function NewCommentButton() {
         Comentar Clase
       </Button>
       <Dialog open={open} onClose={handleClose} style={{zIndex:1253}}>
-        <DialogTitle>Nevo Comentario</DialogTitle>
+        <DialogTitle>Nuevo Comentario</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Su comentario sera enviado al profesor de esta clase, solo sera visible una vez aprobado.
