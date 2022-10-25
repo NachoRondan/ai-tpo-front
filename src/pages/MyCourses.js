@@ -15,9 +15,9 @@ export default function MyCourses({user}) {
                     <UserProfileSideBar/>
                     <Box flex={12}>
                         <Stack padding={2} spacing={2} divider={<Divider/>}>
-                            {courses.filter(course => course.profesorId === user.userId).map((course) => {
+                            {courses.filter(course => course.profesorId === user.userId).map((course, index) => {
                                 return(
-                                    <EditCoursesHome course={course} />
+                                    <EditCoursesHome key={'edit-course-' + index} course={course} />
                                 )
                             })}
                         </Stack>

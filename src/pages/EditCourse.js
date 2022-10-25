@@ -1,10 +1,13 @@
-import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
+import { Stack, FormControl, Input, InputAdornment, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider, Button, CardActions } from "@mui/material"
 import { useParams } from "react-router-dom"
 import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import getUsers from "../assets/MockUpVariables/MockUpUsers"
-import Calification from '../components/Calification'
-import CommentsFeed from '../components/CommentsFeed'
-import HireClassButton from "../components/HireClassButton"
+import getSubjects from "../assets/MockUpVariables/MockUpSubjects"
+import MenuSelect from "../components/MenuSelect"
+import { useState } from "react"
+import EditCourseTitleButton from "../components/EditCourseTitleButton"
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
 
 function findCourse(courseId) {
     return getCourses().find((element) => {
@@ -20,9 +23,14 @@ function findProfesor(profesorId) {
 
 export default function EditCourse({user}) {
 
+    
     const {courseId} = useParams()
     const course = findCourse(courseId)
     const profesor = findProfesor(course.profesorId)
+    const subjects = getSubjects()
+
+    const [price, setPrice] = useState(course.price)
+    
     return (
         <Box flex={12} >
             <Container>
@@ -31,11 +39,12 @@ export default function EditCourse({user}) {
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{course.courseTitle}</Typography>
-                                <HireClassButton/>
+                                <EditCourseTitleButton/>
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>
-                                <Card sx={{ maxWidth: 345, display:{xs:'none', sm:'none', md:'block'} }}>
+                            <Stack>
+                                <Card sx={{ width: 380, display:{xs:'none', sm:'none', md:'block'} }}>
                                     <CardHeader
                                         avatar={
                                             <Avatar src={profesor.picture}/>
@@ -48,26 +57,26 @@ export default function EditCourse({user}) {
                                             image={course.picture}
                                         />
                                     </CardActionArea>
+                                    <CardActions >
+                                    
+                                    </CardActions>
                                 </Card>
+                                <Box  marginTop={2} flex={12} sx={{display:{xs:'none',md:'flex'}, justifyContent:'center'}}>
+                                    <Button color='secondary' variant="contained"  component="label" endIcon={<PhotoCamera />}>
+                                        Cargar Nueva
+                                        <input hidden accept="image/*" multiple type="file" />
+                                    </Button>
+                                    </Box>
+                                    </Stack>
                                 <Container >
                                     <Stack divider={<Divider/>}>
-                                        <Box flex={12} p={2} sx={{display:'flex', justifyContent:'space-around',}}>
-                                            <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Calificacion</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Calificacion</Typography>
-                                            </Box>
-                                            <Box flex={6}>
-                                                <Calification calification={course.calification}/>
-                                            </Box>
-                                        </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                                             <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Materia</Typography>
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.subjects[0]}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.subjects[0]}</Typography>
+                                                <MenuSelect options={subjects} value={course.subjects[0]}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -76,8 +85,7 @@ export default function EditCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Duracion</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.frecuency}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.frecuency}</Typography>
+                                                <MenuSelect options={['Unica','Semanal','Mensual']} value={course.frecuency}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -86,8 +94,7 @@ export default function EditCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Tipo de Clase</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.classType}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.classType}</Typography>
+                                                <MenuSelect options={['Individual','Grupal']} value={course.classType}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -96,8 +103,14 @@ export default function EditCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Costo</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{'$' + course.price}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{'$' + course.price}</Typography>
+                                                <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+                                                    <Input
+                                                        id="standard-adornment-amount"
+                                                        value={price}
+                                                        onChange={(e) => setPrice(e.target.value)}
+                                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                                    />
+                                                </FormControl>
                                             </Box>
                                         </Box>
                                     </Stack>
@@ -112,9 +125,9 @@ export default function EditCourse({user}) {
                                         Descripción del Curso
                                     </Typography>
                                     <TextField
+                                        label="Editar descripcion"
                                         id="outlined-multiline-static"
-                                        fullWidth 
-                                        disabled 
+                                        fullWidth  
                                         multiline
                                         rows={4}
                                         defaultValue={course.description}
@@ -122,11 +135,9 @@ export default function EditCourse({user}) {
                                 </Box>
                             </Container>
                         </Box>
-                    </Paper>
-                    <Paper elevation={3}>
-                    <Box p={2}>
-                        <CommentsFeed/>
-                    </Box> 
+                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
+                            <Button color='success' variant="contained">Confirmar Modificaciones</Button>
+                        </Box>
                     </Paper>
                 </Stack>
             </Container>

@@ -28,8 +28,8 @@ function getModifier(data, handleTextChange, setNewValue, options){
         </DialogContentText>
         <FormGroup>
         {options.map((option) => (data.value.includes(option)) ? 
-          (<FormControlLabel control={<Checkbox value={option} onChange={handleCheckbox} color='secondary' defaultChecked />} label={option} />) :
-          (<FormControlLabel control={<Checkbox value={option} onChange={handleCheckbox} color='secondary'/>} label={option}/>)
+          (<FormControlLabel key={option + '-true'} control={<Checkbox value={option} onChange={handleCheckbox} color='secondary' defaultChecked />} label={option} />) :
+          (<FormControlLabel key={option + '-false'} control={<Checkbox value={option} onChange={handleCheckbox} color='secondary'/>} label={option}/>)
         )}          
         </FormGroup>
       </DialogContent>
