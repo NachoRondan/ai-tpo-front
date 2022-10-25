@@ -22,6 +22,7 @@ import getSubjects from "../assets/MockUpVariables/MockUpSubjects"
 import Calification from "./Calification"
 
 
+
 const subjects = getSubjects()
 
 const calificationOptions = [
