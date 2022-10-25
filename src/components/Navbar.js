@@ -84,8 +84,7 @@ const Navbar = ({user}) => {
               style={{zIndex:1252}}
             >
               {settings.map((setting) => (
-                
-                <MenuItem component={Link} to={setting.link} key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem component={Link} to={setting.link} key={setting.option + '-menu-id'} onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">{setting.option}</Typography>
                 </MenuItem>
               ))}

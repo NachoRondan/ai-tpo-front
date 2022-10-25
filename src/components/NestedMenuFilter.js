@@ -23,7 +23,7 @@ export default function NestedMenuFilter(props){
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader" 
-        style={{zIndex:1250}}
+      style={{zIndex:1250}}
     >
       <ListItemButton onClick={handleClick} >        
         <ListItemText primary={props.filterName} />
@@ -33,7 +33,6 @@ export default function NestedMenuFilter(props){
       <Collapse in={open} timeout="auto" unmountOnExit  >
         <Autocomplete
           disablePortal
-          id="combo-box-demo"
           onInputChange={handleFilter}
           options={props.options}
           sx={{ width: 3/4, display:'flex', pl:4 }}

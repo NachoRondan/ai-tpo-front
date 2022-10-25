@@ -6,7 +6,7 @@ export default function Calification(props) {
     return (
         <Box width={1}  sx={{ flexDirection: 'row' }}>
                 {Array.from(Array(roundedCalification)).map(( _, index) => (
-                    <StarRateIcon style={{ color: '#fabb05' }}/>
+                    <StarRateIcon key={'star-icon-' + index} style={{ color: '#fabb05' }}/>
                 ))}
         </Box>
     )
