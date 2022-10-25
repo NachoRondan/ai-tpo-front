@@ -12,17 +12,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import StarRateIcon from '@mui/icons-material/StarRate';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import ContactPhoneOutlinedIcon from '@mui/icons-material/ContactPhoneOutlined';
 
-const iconsList = [
-    <SearchOutlinedIcon style={{ color: '#F52F41' }}/>,
-    <GroupOutlinedIcon/>,
-    <AccessAlarmIcon style={{ color: '#F52F41' }}/>,
-    <StarRateIcon style={{ color: '#fabb05' }}/>
+var list = [
+  {tabName:'Mis Datos', icon: <BadgeOutlinedIcon />, link:'/profile'},
+  {tabName:'Mis Cursos', icon: <SchoolOutlinedIcon />, link:'/my-courses'},
+  {tabName:'Contrataciones', icon: <ContactPhoneOutlinedIcon />, link:'/contrataciones'},
 ]
 
 const drawerWidth = 240;
@@ -74,7 +72,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function UserProfileSideBar() {
+export default function MobileUserProfileSideBar() {
   const [open, setOpen] = React.useState(false);
     
   const handleClick = () => {
@@ -92,7 +90,7 @@ export default function UserProfileSideBar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {!open ? iconsList.map((icon, index) => (
+          {!open ? list.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -109,14 +107,31 @@ export default function UserProfileSideBar() {
                     justifyContent: 'center',
                   }}
                 >
-                  {icon}
+                  {item.icon}
                 </ListItemIcon>
                 <ListItemText primary={"text"} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           )) : 
           <Box marginTop={2} flex={3} >
-           <Typography></Typography>
+          <List
+            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+          >
+            {list.map((tab,index)=>{
+              return (
+
+                <ListItemButton key={index} alignItems="center" component={Link} to={tab.link}>
+                  <Box marginRight={2}>
+                    {tab.icon}
+                  </Box>  
+                  <ListItemText primary={tab.tabName} />
+                </ListItemButton>
+              )
+            })}
+          </List>
+          <Box bgcolor="white" height={650}/>
           </Box>
           }
         </List>
