@@ -11,23 +11,33 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate, Link} from 'react-router-dom'
-import getUsers from '../assets/MockUpVariables/MockUpUsers';
+import { login } from '../controllers/appController';
 
-function findUser(userMail) {
-  return getUsers().find((element) => {
-    return element.email === userMail;
-  })
-}
 
 export default function SignIn({setUser}) {
   const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    var user = findUser(data.get('email'))
-    setUser(user)
-    navigate('/home')
+    var user = {
+      email : data.get('email'),
+      password : data.get('password')
+    }
+    validateLogin(user)    
   };
+
+  const validateLogin = async function(user) {
+    let getLogin =  await login(user);
+    if (getLogin.rdo===0 )
+    {
+      setUser(user);
+      navigate('/home')
+    }
+    if (getLogin.rdo===1)
+    {
+      alert(getLogin.mensaje)
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
