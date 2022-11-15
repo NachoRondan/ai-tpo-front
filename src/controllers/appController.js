@@ -8,8 +8,6 @@ export const login= async function(login)
     const formData = new URLSearchParams();
     formData.append('email', login.email);
     formData.append('password', login.password);
-    //console.log("dato",formData);
-    console.log("url",url);
     try
     {
         let response = await fetch(url,{
@@ -57,6 +55,73 @@ export const login= async function(login)
                     return ({rdo:1,mensaje:"Ha ocurrido un error"});                
                 }
             }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+export const createStudentProfile = async function (studentProfile){
+    //url webservices
+    let url = urlWebServices.createStudentProfile;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    formData.append('birthdate', studentProfile.birthdate);
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        console.log("response",response);
+        let data = await response.json();
+        console.log("jsonresponse",data);
+        return 0;
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+export const createUser = async function (user)
+{
+    //url webservices
+    let url = urlWebServices.createUser;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    formData.append('name', user.name);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        console.log("response",response);
+        let data = await response.json();
+        console.log("jsonresponse",data);
+        localStorage.setItem("x",data.createdUserToken);
+        return 0;
     }
     catch(error)
     {

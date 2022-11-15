@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {useNavigate, Link} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom';
 import { login } from '../controllers/appController';
 
 
