@@ -1,4 +1,4 @@
-import urlWebServices from '../controllers/webServices.js';
+import urlWebServices from './webServices.js';
 
 export const login= async function(login)
 {
@@ -23,21 +23,26 @@ export const login= async function(login)
         });
         
         let rdo = response.status;
-        console.log("response",response);
         let data = await response.json();
-        console.log("jsonresponse",data);
             switch(rdo)
             {
                 case 201:
                 {
                     //guardo token
                     localStorage.setItem("x",data.loginUser.token);
+                    
                     //guardo usuario logueado
-                    let user = data.loginUser.user;
+                    let user = {
+                        name: data.loginUser.user.name,
+                        lastname: data.loginUser.user.lastname,
+                        email: data.loginUser.user.email,
+                        phoneNumber: data.loginUser.user.phoneNumber,
+                        studentProfileId: data.loginUser.user.studentProfileId ?  true : false,
+                        professorProfileId: data.loginUser.user.professorProfileId ?  true : false,
+                    };
                     localStorage.setItem("nombre",user.name);
                     localStorage.setItem("email",user.email);
-                    
-                    return ({rdo:0,mensaje:"Ok"});//correcto
+                    return ({rdo:0,user:user,mensaje:"Ok"});//correcto
                 }
                 case 202:
                 {
@@ -60,6 +65,46 @@ export const login= async function(login)
     {
         console.log("error",error);
     };
+}
+
+export const getStudentProfile = async function()
+{
+    
+    //url webservices
+    let url = urlWebServices.getStudentProfile;
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams(),
+            
+        });
+        let rdo = response.status;
+        let data = await response.json();
+        let studentProfile = data.studentProfile;
+
+        switch (rdo) 
+        {
+            case 200:
+            {
+                return ({profile:studentProfile,mensaje:"Ok"});
+            }
+            default:
+            {
+                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+            }
+                
+        }
+    }
+    catch (e) {
+        console.log(e)
+    }
 }
 
 export const createStudentProfile = async function (studentProfile){
@@ -101,9 +146,11 @@ export const createUser = async function (user)
     //armo json con datos
     const formData = new URLSearchParams();
     formData.append('name', user.name);
+    formData.append('lastname', user.lastname);
     formData.append('email', user.email);
     formData.append('password', user.password);
-
+    formData.append('phoneNumber', user.phoneNumber);
+    console.log('formData', formData)
     try
     {
         let response = await fetch(url,{

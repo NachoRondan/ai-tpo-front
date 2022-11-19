@@ -11,7 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useNavigate, Link} from 'react-router-dom';
-import { login } from '../controllers/appController';
+import { login, getStudentProfile } from '../controllers/userController';
+import { Paper } from '@mui/material';
 
 
 export default function SignIn({setUser}) {
@@ -27,10 +28,26 @@ export default function SignIn({setUser}) {
   };
 
   const validateLogin = async function(user) {
+    //Devolver el usuario con toda su info y setearlo 
     let getLogin =  await login(user);
-    if (getLogin.rdo===0 )
+    let studentProfile = await getStudentProfile();
+    if (getLogin.rdo===0)
     {
-      setUser(user);
+      
+      let User = {
+        name: getLogin.user.name,
+        lastname: getLogin.user.lastname,
+        email: getLogin.user.email,
+        phoneNumber: getLogin.user.phoneNumber,
+        studentProfileId: getLogin.user.studentProfileId,
+        professorProfileId: getLogin.user.professorProfileId ,
+        birthday: studentProfile.profile.birthdate,
+        finishedStudies: studentProfile.profile.studies,
+        onGoingStudies: studentProfile.profile.studies,
+        contrataciones: studentProfile.profile.bookedCourses
+      };
+      console.log(User)
+      setUser(User);
       navigate('/home')
     }
     if (getLogin.rdo===1)
@@ -40,7 +57,10 @@ export default function SignIn({setUser}) {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Box flex={12} py={2}>
+    <Container component="main" maxWidth="md" >
+    <Paper>
+    <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <Box
         sx={{
@@ -108,6 +128,9 @@ export default function SignIn({setUser}) {
           </Grid>
         </Box>
       </Box>
+      </Container>
+    </Paper>
     </Container>
+    </Box>
   );
 }
