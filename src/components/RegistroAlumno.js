@@ -3,9 +3,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Paper } from '@mui/material';
 import {useNavigate, } from 'react-router-dom';
-import { createUser, createStudentProfile } from '../controllers/appController';
+import { createUser, createStudentProfile } from '../controllers/userController';
 
 
 export const RegistroAlumno=()=>{
@@ -22,9 +22,11 @@ export const RegistroAlumno=()=>{
     const data = new FormData(event.currentTarget);
     var userData = {
       name : data.get('nombre'),
+      lastname : data.get('apellido'),
       email : data.get('correo'),
-      password : data.get('apellido'),
-      birthdate : data.get('fechaNacimiento')
+      password : data.get('clave'),
+      birthdate : data.get('fechaNacimiento'),
+      phoneNumber : data.get('numero')
     }
     let response = createStudentProfileAsync(userData);
 
@@ -35,7 +37,11 @@ export const RegistroAlumno=()=>{
 
 
 
-  return (<Container component="main" maxWidth="xs">
+  return (
+  <Box flex={12} py={2}>
+  <Container component="main" maxWidth="md" >
+  <Paper>
+  <Container component="main" maxWidth="xs">
   <CssBaseline />
   <Box
     sx={{
@@ -51,86 +57,30 @@ export const RegistroAlumno=()=>{
             Creacion Usuario - Alumno
   </Typography>
   <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="nombre"
-              label="Nombre"
+            <TextField margin="normal" required fullWidth id="nombre" label="Nombre" autoComplete="nombre" autoFocus
               name="nombre"
-              autoComplete="nombre"
-              autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
+            <TextField margin="normal" required fullWidth  label="Apellido" type="apellido" id="apellido" autoComplete="apellido"
               name="apellido"
-              label="Apellido"
-              type="apellido"
-              id="apellido"
-              autoComplete="apellido"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="correo"
-              label="Direccion de Correo Electronico"
+            <TextField margin="normal" required fullWidth id="correo" label="Direccion de Correo Electronico" autoComplete="correo" autoFocus
               name="correo"
-              autoComplete="correo"
-              autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="numero"
-              label="Numero Telefonico"
+            <TextField margin="normal" required fullWidth id="clave" label="Password" autoFocus
+              name="clave"
+            />
+            <TextField margin="normal"required fullWidth id="confirmarClave" label="Confirmar Password" autoFocus
+              name="confirmClave"
+            />
+            <TextField margin="normal" required fullWidth id="numero" label="Numero Telefonico" autoComplete="numero" autoFocus
               name="numero"
-              autoComplete="numero"
-              autoFocus
             />
-            <TextField 
-              InputLabelProps={{ shrink: true }}
-              margin="normal"
-              required
-              fullWidth
-              id="fechaNacimiento"
-              label="Fecha de Nacimiento"
+            <TextField InputLabelProps={{ shrink: true }} margin="normal" required fullWidth id="fechaNacimiento" label="Fecha de Nacimiento" type='date' autoFocus
               name="fechaNacimiento"
-              type='date'
-              autoFocus
             />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="estudios"
-              label="Estudios en Curso"
-              name="estudios"
-              autoComplete="estudios"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="estudiosFinalizados"
-              label="Estudios Finalizados"
-              name="estudiosFinalizados"
-              autoComplete="estudiosFinalizados"
-              autoFocus
-            />
-          <TextField
-              InputLabelProps={{ shrink: true }}
-              placeholder="Cual fue el nombre de tu primera mascota?"
-              margin="normal"
-              fullWidth
-              id="pregunta"
-              label="Pregunta de Seguridad"
-              name="pregunta"
-              autoComplete="pregunta"
-              autoFocus
-            />
+          <TextField InputLabelProps={{ shrink: true }} placeholder="Cual fue el nombre de tu primera mascota?" margin="normal" fullWidth id="pregunta" label="Pregunta de Seguridad" autoComplete="pregunta" autoFocus
+            name="pregunta"
+          />
             
               <Button
                 type="submit"
@@ -142,5 +92,8 @@ export const RegistroAlumno=()=>{
               </Button>
           </Box>
   </Box>
-  </Container>)
-}
+  </Container>
+  </Paper>
+  </Container>
+  </Box>
+  )}

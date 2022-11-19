@@ -3,14 +3,18 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Paper } from '@mui/material';
 
 export const Registro=()=>{
 
 const history=useNavigate();
 
 
-return (<Container component="main" maxWidth="xs">
+return (
+  <Box flex={12} py={2}>
+  <Container component="main" maxWidth="md" >
+  <Paper>
+<Container component="main" maxWidth="xs">
 <CssBaseline />
 <Box
   sx={{
@@ -32,5 +36,8 @@ Alumno
 Profesor
 </Button>
 </Box>
-</Container>)
-}
+</Container>
+</Paper>
+</Container>
+</Box>
+)}

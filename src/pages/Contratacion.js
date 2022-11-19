@@ -4,6 +4,9 @@ import UserProfileSideBar from "../components/SidebarProfileTitles"
 
 export default function Contratacion({user}) {
     return (
+        <Box >
+            <Container>
+               
       <Stack direction='row' justifyContent='space-between' spacing={1}>
         <UserProfileSideBar/>
         <Box flex={12} py={2}>
@@ -19,10 +22,12 @@ export default function Contratacion({user}) {
                             <ContratacionesFeed user={user}/>
                         </Paper>
                     </Stack>
+                    
                 </Paper>
             </Container>
-      </Box> 
-         
+        </Box> 
       </Stack>
+      </Container>
+      </Box>
     )
 }
