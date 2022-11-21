@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import { Button, Typography, Paper } from '@mui/material';
 import {useNavigate, } from 'react-router-dom';
-import { createUser, createStudentProfile } from '../controllers/userController';
+import { createUser, createStudentProfile, } from '../controllers/userController';
 
 
 export const RegistroAlumno=()=>{
@@ -13,7 +13,7 @@ export const RegistroAlumno=()=>{
 
   const createStudentProfileAsync = async function (userData){
     console.log('userData',userData)
-    var userToken = await createUser(userData)
+    await createUser(userData)
     return await createStudentProfile(userData)
   }
 
@@ -29,8 +29,10 @@ export const RegistroAlumno=()=>{
       phoneNumber : data.get('numero')
     }
     let response = createStudentProfileAsync(userData);
-
-    navigate('/login')
+    if( response.status === 200)
+    {
+      navigate('/login')
+    }
   }
 
 
@@ -78,22 +80,18 @@ export const RegistroAlumno=()=>{
             <TextField InputLabelProps={{ shrink: true }} margin="normal" required fullWidth id="fechaNacimiento" label="Fecha de Nacimiento" type='date' autoFocus
               name="fechaNacimiento"
             />
-          <TextField InputLabelProps={{ shrink: true }} placeholder="Cual fue el nombre de tu primera mascota?" margin="normal" fullWidth id="pregunta" label="Pregunta de Seguridad" autoComplete="pregunta" autoFocus
-            name="pregunta"
-          />
-            
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Crear Cuenta
-              </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Crear Cuenta
+            </Button>
           </Box>
   </Box>
-  </Container>
-  </Paper>
-  </Container>
+    </Container>
+    </Paper>
+    </Container>
   </Box>
   )}

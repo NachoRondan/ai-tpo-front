@@ -46,7 +46,7 @@ export default function NestedBooleanFilter(props){
      <FormGroup sx={{ pl: 4 }}>
         {props.options.map((option)=>{
             return(
-                <FormControlLabel control={<Checkbox value={option.value} onChange={handleFilter}/>} label= {option.label}/>
+                <FormControlLabel key={option.value} control={<Checkbox value={option.value} onChange={handleFilter}/>} label= {option.label}/>
             )
         })}
         
