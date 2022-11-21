@@ -7,7 +7,7 @@ const urlWebServices = {
     createUser:urlApi +"users/registration",
     createStudentProfile: urlApi + 'users/student-registration',
     getStudentProfile: urlApi + 'users/get-student-profile',
-    guardarImgUser: urlApi + "users/guardarImgUser",
+    updateProfilePicture: urlApi + "users/update-profile-picture",
     getImgUser: urlApi + "users/imgUserByMail",
     uploadFileImg: urlApi + "users/uploadImg",
 }

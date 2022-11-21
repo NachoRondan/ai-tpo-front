@@ -1,8 +1,9 @@
-import { Stack, Box, Container, Paper, Divider } from "@mui/material";
+import { Stack, Box, Container, Paper, Divider, } from "@mui/material";
 import { useState } from "react";
 import UserData from "./UserData";
+import { UploadPictureButton } from "./UploadProfileButton";
 
-export default function UserProfile({user}) {
+export default function UserProfile({user, setUser}) {
     const [name, setName] = useState(user.name)
     const [lastname, setLastname] = useState(user.lastname)
     const [birthday, setBirthday] = useState(user.birthday)
@@ -28,10 +29,12 @@ export default function UserProfile({user}) {
         <Container>
             <Paper elevation={3}>
                 <Stack padding={2} spacing={2} divider={<Divider/>}>
-                    {data_list.map((data_item)=>(
+                    <UploadPictureButton user={user} setUser={setUser}/>
+                    {data_list.map((data_item, index)=>(
                         <UserData 
                             data={data_item}
                             value={data_item.value}
+                            key={index}
                         />
                     ))}
                 </Stack>

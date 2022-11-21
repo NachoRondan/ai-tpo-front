@@ -33,7 +33,7 @@ function App() {
             <Route path="registroAlumno" element={<RegistroAlumno  />}/>
             <Route path="registroProfesor" element={<RegistroProfesor  />}/>
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
-            <Route path="profile" element={<Profile user={user}/>}/>
+            <Route path="profile" element={<Profile user={user} setUser={setUser}/>}/>
             <Route path="my-courses" element={<MyCourses user={user}/>}/>
             <Route path="edit-course">
               <Route path=':courseId' element={<EditCourse user={user} />}/>

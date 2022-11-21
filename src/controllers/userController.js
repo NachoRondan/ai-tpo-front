@@ -1,5 +1,6 @@
 import urlWebServices from './webServices.js';
 
+//USER
 export const login= async function(login)
 {
     //url webservices
@@ -37,6 +38,7 @@ export const login= async function(login)
                         lastname: data.loginUser.user.lastname,
                         email: data.loginUser.user.email,
                         phoneNumber: data.loginUser.user.phoneNumber,
+                        profilePictureReference: data.loginUser.user.profilePictureReference ? data.loginUser.user.profilePictureReference : '',
                         studentProfileId: data.loginUser.user.studentProfileId ?  true : false,
                         professorProfileId: data.loginUser.user.professorProfileId ?  true : false,
                     };
@@ -67,6 +69,44 @@ export const login= async function(login)
     };
 }
 
+export const createUser = async function (user)
+{
+    //url webservices
+    let url = urlWebServices.createUser;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    formData.append('name', user.name);
+    formData.append('lastname', user.lastname);
+    formData.append('email', user.email);
+    formData.append('password', user.password);
+    formData.append('phoneNumber', user.phoneNumber);
+    console.log('formData', formData)
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        console.log("response",response);
+        let data = await response.json();
+        console.log("jsonresponse",data);
+        localStorage.setItem("x",data.createdUserToken);
+        return 0;
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+//STUDENT PROFILE
 export const getStudentProfile = async function()
 {
     
@@ -131,7 +171,7 @@ export const createStudentProfile = async function (studentProfile){
         console.log("response",response);
         let data = await response.json();
         console.log("jsonresponse",data);
-        return 0;
+        return {status:response.status, message:'Usuario creado con exito!'};
     }
     catch(error)
     {
@@ -139,39 +179,35 @@ export const createStudentProfile = async function (studentProfile){
     };
 }
 
-export const createUser = async function (user)
-{
+//IMAGES
+export const updateProfilePicture = async function (files, titles){
     //url webservices
-    let url = urlWebServices.createUser;
-    //armo json con datos
-    const formData = new URLSearchParams();
-    formData.append('name', user.name);
-    formData.append('lastname', user.lastname);
-    formData.append('email', user.email);
-    formData.append('password', user.password);
-    formData.append('phoneNumber', user.phoneNumber);
-    console.log('formData', formData)
+    let url = urlWebServices.updateProfilePicture;
+    const formData = new FormData();
+    //agrego archivos para subir
+    for (let i = 0; i < files.length; i++)
+    {
+        formData.append('files', files[i], titles[i])
+    }
+   
     try
     {
         let response = await fetch(url,{
             method: 'POST', // or 'PUT'
             mode: "cors",
-            headers:{   
-                'Accept':'application/x-www-form-urlencoded',
+            headers:{
+                'Accept':'application/form-data',
+                'x-access-token': localStorage.getItem('x'),
                 'Origin':'http://localhost:3000',
-                'Content-Type': 'application/x-www-form-urlencoded'},
-            body: formData,
-            
+                //'Content-Type': 'application/form-data'
+            },
+            body:formData
         });
-        
-        console.log("response",response);
-        let data = await response.json();
-        console.log("jsonresponse",data);
-        localStorage.setItem("x",data.createdUserToken);
-        return 0;
+    
+        let data = await response.json()
+        return {imgUrl:data.data.profilePictureReference};
+    } catch (err) {
+        alert('Error uploading the files')
+        console.log('Error uploading the files', err)
     }
-    catch(error)
-    {
-        console.log("error",error);
-    };
 }
