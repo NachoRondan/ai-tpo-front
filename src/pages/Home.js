@@ -87,6 +87,7 @@ export default function Home({user}) {
   return (
     <Container>
       <Stack direction='row' justifyContent='space-between' spacing={1}>
+      {console.log(user)}
         <SidebarFilter setCourses={setCourses} courses={courses}
           classTypeFilter={classTypeFilter} setClassTypeFilter={setClassTypeFilter}
           classFrecuencyFilter={classFrecuencyFilter} setClassFrecuencyFilter={setClassFrecuencyFilter}

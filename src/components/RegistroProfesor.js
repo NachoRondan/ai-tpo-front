@@ -4,15 +4,41 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import { Button, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import {useNavigate, } from 'react-router-dom';
+import { createUser, createProfessorProfile, } from '../controllers/userController';
 
 export const RegistroProfesor=()=>{
 
-const handleSubmit=()=>{console.log("hola")}
+  const navigate = useNavigate();
 
+  const createProfessorProfileAsync = async function (userData){
+    await createUser(userData)
+    let response = await createProfessorProfile(userData);
+    console.log(response)
+    if( response.status === 200)
+    {
+      alert(response.message)
+      navigate('/login')
+    }
+    else{
+      alert('Ocurrio un problema creando el usuario, por favor intente mas tarde...')
+    }
+  }
 
-
-
+  const handleSubmit=(event)=>{
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    var userData = {
+      name : data.get('nombre'),
+      lastname : data.get('apellido'),
+      email : data.get('correo'),
+      phoneNumber : data.get('numero'),
+      password : data.get('clave'),
+      workExperience : data.get('experiencia'),
+      titles : data.get('titulos'),
+    }
+    createProfessorProfileAsync(userData);
+  }
 
 return (<Container component="main" maxWidth="xs">
 <CssBaseline />
@@ -30,76 +56,30 @@ return (<Container component="main" maxWidth="xs">
           Creacion Usuario - Profesor
 </Typography>
 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="nombre"
-            label="Nombre"
+          <TextField margin="normal" required fullWidth id="nombre" label="Nombre" autoComplete="nombre" autoFocus
             name="nombre"
-            autoComplete="nombre"
-            autoFocus
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
+          <TextField margin="normal" required fullWidth label="Apellido" type="apellido" id="apellido" autoComplete="apellido"
             name="apellido"
-            label="Apellido"
-            type="apellido"
-            id="apellido"
-            autoComplete="apellido"
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="correo"
-            label="Direccion de Correo Electronico"
+          <TextField margin="normal" required fullWidth id="correo" label="Direccion de Correo Electronico" autoComplete="correo" autoFocus
             name="correo"
-            autoComplete="correo"
-            autoFocus
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="numero"
-            label="Numero Telefonico"
+          <TextField margin="normal" required fullWidth id="clave" label="Password" autoFocus
+              name="clave"
+            />
+          <TextField margin="normal"required fullWidth id="confirmarClave" label="Confirmar Password" autoFocus
+            name="confirmClave"
+          />
+          <TextField margin="normal" required fullWidth id="numero" label="Numero Telefonico" autoComplete="numero" autoFocus
             name="numero"
-            autoComplete="numero"
-            autoFocus
           />
-          <TextField
-            margin="normal"
-            fullWidth
-            id="experiencia"
-            label="Experiencia"
+          <TextField margin="normal" fullWidth id="experiencia" label="Experiencia"  autoComplete="experiencia" autoFocus 
             name="experiencia"
-            autoComplete="experiencia"
-            autoFocus
           />
-          <TextField
-            margin="normal"
-            fullWidth
-            id="titulos"
-            label="Titulos"
+          <TextField margin="normal" fullWidth id="titulos" label="Titulos" autoComplete="titulos" autoFocus
             name="titulos"
-            autoComplete="titulos"
-            autoFocus
           />
-        <TextField
-            InputLabelProps={{ shrink: true }}
-            placeholder="Cual fue el nombre de tu primera mascota?"
-            margin="normal"
-            fullWidth
-            id="pregunta"
-            label="Pregunta de Seguridad"
-            name="pregunta"
-            autoComplete="pregunta"
-            autoFocus
-          />
-          <Link to={'/login'} style={{ textDecoration: 'none', color: 'unset' }}>
             <Button
               type="submit"
               fullWidth
@@ -108,7 +88,6 @@ return (<Container component="main" maxWidth="xs">
             >
               Crear Cuenta
             </Button>
-          </Link>
         </Box>
 </Box>
 </Container>)
