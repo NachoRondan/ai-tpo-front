@@ -31,7 +31,6 @@ export default function SignIn({setUser}) {
     //Devolver el usuario con toda su info y setearlo 
     let getLogin =  await login(user);
     let studentProfile = await getStudentProfile();
-    console.log('studentProfile',studentProfile)
     if (getLogin.rdo===0)
     {
       
@@ -42,11 +41,11 @@ export default function SignIn({setUser}) {
         phoneNumber: getLogin.user.phoneNumber,
         studentProfileId: getLogin.user.studentProfileId,
         picture: getLogin.user.profilePictureReference,
-        professorProfileId: getLogin.user.professorProfileId ,
+        professorProfileId: getLogin.user.professorProfileId,
         birthday: studentProfile.profile.birthdate,
-        finishedStudies: studentProfile.profile.studies,
-        onGoingStudies: studentProfile.profile.studies,
-        contrataciones: studentProfile.profile.bookedCourses
+        finishedStudies: studentProfile.profile.studies ? studentProfile.profile.studies : [],
+        onGoingStudies: studentProfile.profile.studies ? studentProfile.profile.studies : [],
+        contrataciones: studentProfile.profile.bookedCourses ? studentProfile.profile.bookedCourses : []
       };
       console.log(User)
       setUser(User);

@@ -94,9 +94,7 @@ export const createUser = async function (user)
             
         });
         
-        console.log("response",response);
         let data = await response.json();
-        console.log("jsonresponse",data);
         localStorage.setItem("x",data.createdUserToken);
         return 0;
     }
@@ -127,7 +125,21 @@ export const getStudentProfile = async function()
         });
         let rdo = response.status;
         let data = await response.json();
-        let studentProfile = data.studentProfile;
+        console.log('response',rdo)
+        let studentProfile = {
+            birthdate : '',
+            finishedStudies: [],
+            onGoingStudies: [],
+        };
+        if(data.studentProfile){
+            studentProfile =  {
+                birthdate : data.studentProfile.birthdate,
+                finishedStudies: data.studentProfile.studies,
+                onGoingStudies: data.studentProfile.studies,
+            }
+        }
+
+        console.log('studentProfile',studentProfile)
 
         switch (rdo) 
         {
@@ -179,6 +191,40 @@ export const createStudentProfile = async function (studentProfile){
     };
 }
 
+//PROFESSOR PROFILE
+export const createProfessorProfile = async function (professorProfile){
+    //url webservices
+    let url = urlWebServices.createProfessorProfile;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    formData.append('workExperience', professorProfile.workExperience);
+    formData.append('titles', professorProfile.titles);
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        console.log("response",response);
+        let data = await response.json();
+        console.log("jsonresponse",data);
+        return {status:response.status, message:'Usuario creado con exito!'};
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
 //IMAGES
 export const updateProfilePicture = async function (files, titles){
     //url webservices
@@ -203,7 +249,7 @@ export const updateProfilePicture = async function (files, titles){
             },
             body:formData
         });
-    
+        console.log('response',response)
         let data = await response.json()
         return {imgUrl:data.data.profilePictureReference};
     } catch (err) {
