@@ -12,9 +12,17 @@ export const RegistroAlumno=()=>{
   const navigate = useNavigate();
 
   const createStudentProfileAsync = async function (userData){
-    console.log('userData',userData)
     await createUser(userData)
-    return await createStudentProfile(userData)
+    let response = await createStudentProfile(userData);
+    console.log(response)
+    if( response.status === 200)
+    {
+      alert(response.message)
+      navigate('/login')
+    }
+    else{
+      alert('Ocurrio un problema creando el usuario, por favor intente mas tarde...')
+    }
   }
 
   const handleSubmit=(event)=>{
@@ -28,11 +36,7 @@ export const RegistroAlumno=()=>{
       birthdate : data.get('fechaNacimiento'),
       phoneNumber : data.get('numero')
     }
-    let response = createStudentProfileAsync(userData);
-    if( response.status === 200)
-    {
-      navigate('/login')
-    }
+    createStudentProfileAsync(userData);
   }
 
 

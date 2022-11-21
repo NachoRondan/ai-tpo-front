@@ -38,6 +38,7 @@ export const login= async function(login)
                         lastname: data.loginUser.user.lastname,
                         email: data.loginUser.user.email,
                         phoneNumber: data.loginUser.user.phoneNumber,
+                        profilePictureReference: data.loginUser.user.profilePictureReference ? data.loginUser.user.profilePictureReference : '',
                         studentProfileId: data.loginUser.user.studentProfileId ?  true : false,
                         professorProfileId: data.loginUser.user.professorProfileId ?  true : false,
                     };
@@ -170,7 +171,7 @@ export const createStudentProfile = async function (studentProfile){
         console.log("response",response);
         let data = await response.json();
         console.log("jsonresponse",data);
-        return response;
+        return {status:response.status, message:'Usuario creado con exito!'};
     }
     catch(error)
     {
@@ -203,10 +204,8 @@ export const updateProfilePicture = async function (files, titles){
             body:formData
         });
     
-        let user = await response.json()
-        console.log('respuestaUpload', user);
-        //alert('Archivo cargado correctamente!')
-        return user;
+        let data = await response.json()
+        return {imgUrl:data.data.profilePictureReference};
     } catch (err) {
         alert('Error uploading the files')
         console.log('Error uploading the files', err)
