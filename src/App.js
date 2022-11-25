@@ -17,6 +17,7 @@ import { Landing } from "./components/Landing";
 import { RecuperarClave } from "./components/RecuperarClave";
 import MyCourses from "./pages/MyCourses";
 import EditCourse from "./pages/EditCourse";
+import NewCourse from "./pages/NewCourse";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -35,6 +36,7 @@ function App() {
             <Route path="recuperarClave" element={<RecuperarClave  />}/>
             <Route path="profile" element={<Profile user={user} setUser={setUser}/>}/>
             <Route path="my-courses" element={<MyCourses user={user}/>}/>
+            <Route path="new-course" element={<NewCourse user={user}/>}/>
             <Route path="edit-course">
               <Route path=':courseId' element={<EditCourse user={user} />}/>
             </Route>

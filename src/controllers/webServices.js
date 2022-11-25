@@ -9,6 +9,8 @@ const urlWebServices = {
     getStudentProfile: urlApi + 'users/get-student-profile',
     createProfessorProfile: urlApi + 'users/professor-registration',
     updateProfilePicture: urlApi + "users/update-profile-picture",
+
+    createCourse : urlApi + "courses/"
 }
 
 export default urlWebServices;

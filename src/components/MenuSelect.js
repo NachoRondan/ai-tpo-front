@@ -13,10 +13,10 @@ export default function MenuSelect({options, value}) {
           select
           value={newValue}
           onChange={handleChange} 
-          
+          style={{zIndex:1250}}
         >
           {options.map((option) => (
-            <MenuItem key={option} value={option}>
+            <MenuItem style={{zIndex:1253}} key={option} value={option}>
               {option}
             </MenuItem>
           ))}

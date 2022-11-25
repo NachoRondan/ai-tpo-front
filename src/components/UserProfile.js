@@ -10,8 +10,8 @@ export default function UserProfile({user, setUser}) {
     const [email, setEmail] = useState(user.email)
     const [finishedStudies, setFinishedStudies] = useState(user.finishedStudies)
     const [onGoingStudies, setOnGoingStudies] = useState(user.onGoingStudies)
-    const [workExperience, setWorkExperience] = useState(user.workExperience)
-    const [educationTitles, setEducationTitles] = useState(user.educationTitles)
+    const [workExperience, setWorkExperience] = useState(user.workExperience ? user.workExperience : [])
+    const [educationTitles, setEducationTitles] = useState(user.educationTitles ? user.educationTitles : [])
     
     var data_list = [
         {title:'Nombre', value: name, function: setName, options: ''},
