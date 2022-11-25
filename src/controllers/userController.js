@@ -95,8 +95,24 @@ export const createUser = async function (user)
         });
         
         let data = await response.json();
-        localStorage.setItem("x",data.createdUserToken);
-        return 0;
+        let rdo = response.status;
+        switch(rdo)
+            {
+            case 200:
+            {
+            localStorage.setItem("x",data.createdUserToken);
+            return ({rdo:0, mensaje: 'Usuario creado con exito!'});
+            }
+            case 500:
+            {
+                return({rdo:1, mensaje: 'Error creando el usuario, el mail se encuentra en uso!'})
+            }
+            default:
+            {
+                //otro error
+                return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+            }        
+        }
     }
     catch(error)
     {
