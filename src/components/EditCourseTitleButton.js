@@ -6,8 +6,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import {Button} from "@mui/material"
 
-export default function EditCourseTitleButton() {
+export default function EditCourseTitleButton({setTitle}) {
   const [open, setOpen] = React.useState(false);
+  const [aux, setAux] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,6 +17,11 @@ export default function EditCourseTitleButton() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSetTitle = () => {
+    setTitle(aux)
+    setOpen(false)
+  }
 
   return (
     <>
@@ -33,11 +39,12 @@ export default function EditCourseTitleButton() {
             fullWidth
             rows={4}
             variant="filled"
+            onChange={(e)=>{setAux(e.target.value)}}
           />
         </DialogContent>
         <DialogActions>
           <Button variant='contained' onClick={handleClose}>Cancelar</Button>
-          <Button variant='contained' color='secondary' onClick={handleClose}>Confirmar</Button>
+          <Button variant='contained' color='secondary' onClick={handleSetTitle}>Confirmar</Button>
         </DialogActions>
       </Dialog>
     </>
