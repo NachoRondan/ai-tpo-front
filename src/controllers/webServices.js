@@ -10,7 +10,9 @@ const urlWebServices = {
     createProfessorProfile: urlApi + 'users/professor-registration',
     updateProfilePicture: urlApi + "users/update-profile-picture",
 
-    createCourse : urlApi + "courses/"
+    createCourse : urlApi + "courses/",
+    getAllClasses : urlApi + "courses/",
+    getAllMyClasses: urlApi + "courses/professor-courses",
 }
 
 export default urlWebServices;

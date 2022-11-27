@@ -1,4 +1,5 @@
 import urlWebServices from './webServices.js';
+import DefaultPicture from '../assets/default_class.jpg'
 
 //USER
 export const createCourse = async function(course)
@@ -42,6 +43,130 @@ export const createCourse = async function(course)
                 {
                     //otro error
                     return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+                }
+            }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+export const getAllClasses = async function(course)
+{
+    //url webservices
+    let url = urlWebServices.getAllClasses;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'GET', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+
+        })
+
+        let rdo = response.status;
+        let data = await response.json();
+            switch(rdo)
+            {
+                case 200:
+                {
+                    var courses = []
+                    var course ={
+                        title: '', 
+                        subject: '' ,
+                        frequency: '', 
+                        duration: '' ,
+                        price: '' ,
+                        description: '' ,
+                        classType: '' ,
+
+                    }
+                    data.courses.map((c) => (
+
+                        course.title= c.name, 
+                        course.subject= [c.subject],
+                        course.frequency= c.frequency, 
+                        course.duration= c.duration,
+                        course.price=c.cost,
+                        course.description= c.description,
+                        course.classType= c.classType,
+                        courses.push(course)
+                    )
+                    )
+                    return ({courses:courses});//correcto
+                }
+                default:
+                {
+                    //otro error
+                    return ({rdo:1,mensaje:""});                
+                }
+            }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+export const getAllMyClasses = async function()
+{
+    //url webservices
+    let url = urlWebServices.getAllMyClasses;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'GET', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},            
+        });
+        
+        let rdo = response.status;
+        let data = await response.json();
+            switch(rdo)
+            {
+                case 200:
+                {
+                    var courses = []
+                    var course ={
+                        courseTitle: '', 
+                        courseId:'',
+                        subjects: '' ,
+                        frecuency: '', 
+                        price: '' ,
+                        description: '' ,
+                        classType: '' ,
+                        paused:false,
+                        picture:DefaultPicture
+
+                    }
+                    data.map((c) => (
+
+                        course.courseTitle= c.name, 
+                        course.courseId= c._id,
+                        course.subjects= c.subject,
+                        course.frecuency= c.frequency, 
+                        course.price=c.cost,
+                        course.description= c.description,
+                        course.classType= c.classType,
+                        courses.push(course)
+                    )
+                    )
+                    return ({courses:courses});//correcto
+                }
+                default:
+                {
+                    //otro error
+                    return ({courses:[]});                
                 }
             }
     }
