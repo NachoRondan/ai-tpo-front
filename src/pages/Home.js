@@ -3,7 +3,7 @@ import SidebarFilter from "../components/SidebarFilter"
 import Feed from "../components/Feed"
 import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import { useState } from "react";
-
+import { getAllClasses } from '../controllers/courseController';
 
 const total_courses = getCourses()
 

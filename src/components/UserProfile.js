@@ -6,7 +6,7 @@ import { UploadPictureButton } from "./UploadProfileButton";
 export default function UserProfile({user, setUser}) {
     const [name, setName] = useState(user.name)
     const [lastname, setLastname] = useState(user.lastname)
-    const [birthday, setBirthday] = useState(user.birthday)
+    const [birthday, setBirthday] = useState(user.birthday.substring(0, 10))
     const [email, setEmail] = useState(user.email)
     const [finishedStudies, setFinishedStudies] = useState(user.finishedStudies)
     const [onGoingStudies, setOnGoingStudies] = useState(user.onGoingStudies)

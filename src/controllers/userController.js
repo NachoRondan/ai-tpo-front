@@ -80,7 +80,6 @@ export const createUser = async function (user)
     formData.append('email', user.email);
     formData.append('password', user.password);
     formData.append('phoneNumber', user.phoneNumber);
-    console.log('formData', formData)
     try
     {
         let response = await fetch(url,{
@@ -96,6 +95,7 @@ export const createUser = async function (user)
         
         let data = await response.json();
         let rdo = response.status;
+        console.log(data)
         switch(rdo)
             {
             case 200:
@@ -103,7 +103,7 @@ export const createUser = async function (user)
             localStorage.setItem("x",data.createdUserToken);
             return ({rdo:0, mensaje: 'Usuario creado con exito!'});
             }
-            case 500:
+            case 501:
             {
                 return({rdo:1, mensaje: 'Error creando el usuario, el mail se encuentra en uso!'})
             }
@@ -199,7 +199,7 @@ export const createStudentProfile = async function (studentProfile){
         console.log("response",response);
         let data = await response.json();
         console.log("jsonresponse",data);
-        return {status:response.status, message:'Usuario creado con exito!'};
+        return {status:response.status, mensaje:'Usuario creado con exito!'};
     }
     catch(error)
     {
@@ -233,11 +233,11 @@ export const createProfessorProfile = async function (professorProfile){
         console.log("response",response);
         let data = await response.json();
         console.log("jsonresponse",data);
-        return {status:response.status, message:'Usuario creado con exito!'};
+        return {status:response.status, mensaje:'Usuario creado con exito!'};
     }
     catch(error)
     {
-        console.log("error",error);
+        console.log({mensaje:'Error creando el usuario!'});
     };
 }
 

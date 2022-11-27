@@ -4,8 +4,8 @@ import AlertDeleteCourse from "./AlertDeleteCourse";
 import AlertPausedCourse from "./AlertPausedCourse";
 import { Link } from "react-router-dom";
 
-export default function EditCoursesHome({course,}) {
- 
+export default function EditCoursesHome({course}) {
+    console.log('here')
     return (
         <Paper elevation={3}>
             <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>

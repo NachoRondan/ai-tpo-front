@@ -1,19 +1,22 @@
 import { Stack, Box, Container, Divider, Typography, Paper, Button } from "@mui/material"
+import { useEffect, useState } from "react";
 import {useNavigate, } from 'react-router-dom';
 import EditCoursesHome from "../components/EditCoursesHome"
 import UserProfileSideBar from "../components/SidebarProfileTitles"
+import { getAllMyClasses } from '../controllers/courseController'
 
-//const courses = getCourses()
-const courses = []
+
+
 
 function render(courses, navigate){
-    console.log(courses.length)
     if(courses.length > 0){
-        courses.map((course, index) => {
             return(
-                <EditCoursesHome key={'edit-course-' + index} course={course} />
+                <Stack padding={2} spacing={2} divider={<Divider/>}>
+                    {courses.map((course, index) => {
+                        return(<EditCoursesHome key={'edit-course-' + index} course={course}/>)
+                    })}   
+                </Stack>
             )
-        })
     }
     else{
         return(
@@ -36,8 +39,19 @@ function render(courses, navigate){
 }
 
 export default function MyCourses({user}) {
-    
     const navigate = useNavigate()
+
+    const [courses, setCourses] = useState([])  
+    useEffect(()=>{
+        async function componentDidMount() 
+        {
+          //traer imagenes de User
+          let rdo = await getAllMyClasses();
+          setCourses(rdo.courses); 
+        }
+        componentDidMount();
+      },[]);
+
     return (
         <Box >
             <Container>
