@@ -11,7 +11,7 @@ import { getAllMyClasses } from '../controllers/courseController'
 function render(courses, navigate){
     if(courses.length > 0){
             return(
-                <Stack padding={2} spacing={2} divider={<Divider/>}>
+                <Stack padding={2} spacing={2} divider={<Divider/>}>                            
                     {courses.map((course, index) => {
                         return(<EditCoursesHome key={'edit-course-' + index} course={course}/>)
                     })}   
@@ -62,6 +62,7 @@ export default function MyCourses({user}) {
                             {render(courses, navigate)}
                         </Stack>
                     </Box>
+                    
                 </Stack>
             </Container>
         </Box>

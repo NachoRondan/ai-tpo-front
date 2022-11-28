@@ -1,7 +1,7 @@
 import urlWebServices from './webServices.js';
 import DefaultPicture from '../assets/default_class.jpg'
 
-//USER
+//COURSE
 export const createCourse = async function(course)
 {
     //url webservices
@@ -52,6 +52,60 @@ export const createCourse = async function(course)
     };
 }
 
+
+export const deleteCourse = async function(course)
+{
+    //url webservices
+    let url = urlWebServices.updateCourse;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    //formData.append('name', course.courseTitle);
+    formData.append('courseId', course.courseId);
+    //formData.append('subjects', course.subject);
+    //formData.append('frequency', course.frequency);
+    //formData.append('duration', course.duration);
+    //formData.append('cost', course.price);
+    //formData.append('description', course.description);
+    //formData.append('classType', course.classType);
+    //formData.append('published', course.published);
+    formData.append('is_deleted', course.is_deleted);
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'PUT', 
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        let rdo = response.status;
+        let data = await response.json();
+            switch(rdo)
+            {
+                case 200:
+                {
+
+                    console.log('data',data)
+                    //return ({rdo:0,course:data.createdClass,mensaje:"Curso creado con exito!"});
+                }
+                default:
+                {
+                    //otro error
+                    return ({rdo:1,mensaje:"Ha ocurrido un error"});                
+                }
+            }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
 export const getAllClasses = async function(course)
 {
     //url webservices
@@ -76,7 +130,7 @@ export const getAllClasses = async function(course)
                 case 200:
                 {
                     var courses = []
-                    var course ={
+                    let course ={
                         title: '', 
                         subject: '' ,
                         frequency: '', 
@@ -87,8 +141,7 @@ export const getAllClasses = async function(course)
 
                     }
                     data.courses.map((c) => (
-
-                        course.title= c.name, 
+                        course.title = c.name, 
                         course.subject= [c.subject],
                         course.frequency= c.frequency, 
                         course.duration= c.duration,

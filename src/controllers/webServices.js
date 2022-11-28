@@ -1,5 +1,4 @@
 const urlApi = "http://localhost:4000/api/";
-//const urlApi = "https://api-viernes.herokuapp.com/";
 console.log("url",urlApi);
 
 const urlWebServices = {
@@ -11,6 +10,7 @@ const urlWebServices = {
     updateProfilePicture: urlApi + "users/update-profile-picture",
 
     createCourse : urlApi + "courses/",
+    updateCourse : urlApi + "courses/update",
     getAllClasses : urlApi + "courses/",
     getAllMyClasses: urlApi + "courses/professor-courses",
 }

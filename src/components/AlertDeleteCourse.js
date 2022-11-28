@@ -8,8 +8,18 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from "react";
 import { IconButton } from '@mui/material';
+import { deleteCourse } from '../controllers/courseController'
 
-export default function AlertDeleteCourse() {
+const updateCourse = async function(course){
+  var courseToDelete = {
+    courseId : course.courseId,
+    is_deleted : true,
+  }
+  deleteCourse(courseToDelete);
+}
+
+
+export default function AlertDeleteCourse({course}) {
   const [open, setOpen] = useState(false);
 
   const handleDeleteClick = () => {
@@ -17,9 +27,7 @@ export default function AlertDeleteCourse() {
   }
 
   const confirmDeletion = () => {
-    //TO DO
-      //Llamada a api para eliminar estado
-    
+    updateCourse(course)    
     setOpen(false);
   }
   const handleClose = () => {
