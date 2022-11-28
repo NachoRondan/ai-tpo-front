@@ -7,7 +7,7 @@ export default function ContratacionesFeed({user}){
     
     return(
         <Stack divider={<Divider  />} spacing={2} >
-            {contrataciones.map((contratacion) => (
+            {contrataciones.map((contratacion, index) => (
                 <Box>
                     <Stack alignContent='center' justifyContent='flex-start'> 
                         <Typography marginBottom={2} variant="h5">{contratacion.userName}</Typography>

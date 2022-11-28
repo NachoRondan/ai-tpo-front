@@ -1,13 +1,12 @@
 import { Stack, FormControl, Input, InputAdornment, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider, Button, CardActions, } from "@mui/material"
 import getSubjects from "../assets/MockUpVariables/MockUpSubjects"
-import MenuSelect from "../components/MenuSelect"
 import { useState } from "react"
 import EditCourseTitleButton from "../components/EditCourseTitleButton"
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import DefaultPicture from '../assets/default_class.jpg'
 import { createCourse } from '../controllers/courseController';
 import { useNavigate } from "react-router-dom"
-
+import EditCourseProperty from "../components/EditCourseProperty"
 
 export default function NewCourse({user}) {
     const navigate = useNavigate()
@@ -94,7 +93,10 @@ export default function NewCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
                                             </Box>
                                             <Box flex={6} >
-                                                <MenuSelect options={subjects} value={subject}/>
+                                                <Stack direction='row' spacing={5} sx={{display:'flex', justifyContent:'space-around',  alignItems:'center', alignContent:'center'}}>
+                                                    <Typography variant="h5">{subject}</Typography>
+                                                    <EditCourseProperty options={subjects} value={subject} setValue={setSubject}/>
+                                                </Stack>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -103,7 +105,10 @@ export default function NewCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Duracion</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <MenuSelect options={['Unica','Semanal','Mensual']} value={duration}/>
+                                            <Stack direction='row' spacing={5} sx={{display:'flex', justifyContent:'space-around',  alignItems:'center', alignContent:'center'}}>
+                                                <Typography variant="h5">{duration}</Typography>
+                                                <EditCourseProperty options={['Unica','Semanal','Mensual']} value={duration} setValue={setDuration}/>
+                                            </Stack>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -112,10 +117,13 @@ export default function NewCourse({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Tipo de Clase</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <MenuSelect options={['Individual','Grupal']} value={classType}/>
+                                                <Stack direction='row' spacing={5} sx={{display:'flex', justifyContent:'space-around',  alignItems:'center', alignContent:'center'}}>
+                                                    <Typography variant="h5">{classType}</Typography>
+                                                    <EditCourseProperty options={['Individual','Grupal']} value={classType} setValue={setClassType}/>
+                                                </Stack>
                                             </Box>
                                         </Box>
-                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
+                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center', alignItems:'center'}}>
                                             <Box flex={6}>
                                                 <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Costo</Typography>
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Costo</Typography>
@@ -123,9 +131,10 @@ export default function NewCourse({user}) {
                                             <Box flex={6}>
                                                 <FormControl fullWidth sx={{ m: 1 }} variant="standard">
                                                     <Input
+                                                        inputProps={{style: {fontSize: 24}}}
                                                         id="standard-adornment-amount"
                                                         value={price}
-                                                        onChange={(e) => setPrice(e.target.value)}
+                                                        onChange={(e) => isNaN(e.target.value.slice(-1)) ? null : setPrice(e.target.value)}
                                                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                                     />
                                                 </FormControl>
