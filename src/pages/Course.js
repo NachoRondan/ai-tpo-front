@@ -5,6 +5,8 @@ import getUsers from "../assets/MockUpVariables/MockUpUsers"
 import Calification from '../components/Calification'
 import CommentsFeed from '../components/CommentsFeed'
 import HireClassButton from "../components/HireClassButton"
+import { useState, useEffect } from "react"
+import { getClassById } from '../controllers/courseController'
 
 function findCourse(courseId) {
     return getCourses().find((element) => {
@@ -21,8 +23,45 @@ function findProfesor(profesorId) {
 export default function Course({user}) {
 
     const {courseId} = useParams()
-    const course = findCourse(courseId)
-    const profesor = findProfesor(course.profesorId)
+    
+    const [course, setCourse] = useState([])
+    const [title, setTitle] = useState(course.courseTitle)
+    const [picture, setPicture] = useState(course.picture)
+    const [price, setPrice] = useState(course.price)
+    const [subject, setSubject] = useState(course.subjects)
+    const [paused, setPaused] = useState(course.paused)
+    const [frequency, setFrequency] = useState(course.frequency)
+    const [duration, setDuration] = useState(course.duration)
+    const [calification, setCalification] = useState(course.calification)
+    const [description, setDescription] = useState(course.description)
+    const [classType, setClassType] = useState(course.classType)
+    const [professorLastname, setProfessorLastname] = useState(course.professorLastname)
+    const [professorName, setProfessorName] = useState(course.professorName)
+
+
+    useEffect(()=>{
+        async function componentDidMount() 
+        {
+          //traer imagenes de User
+          let rdo = await getClassById(courseId);
+          setCalification(rdo.course.calification)
+          setCourse(rdo.course); 
+          setTitle(rdo.course.courseTitle)
+          setPicture(rdo.course.picture)
+          setPrice(rdo.course.price)
+          setSubject(rdo.course.subjects)
+          setPaused(rdo.course.paused)
+          setFrequency(rdo.course.frequency)
+          setProfessorName(rdo.course.professorName)
+          setCalification(rdo.course.calification)
+          setProfessorLastname(rdo.course.professorLastname)
+          setDuration(rdo.course.frequency.charAt(0).toUpperCase() + rdo.course.frequency.slice(1).toLowerCase())
+          setDescription(rdo.course.description)
+          setClassType(rdo.course.classType.charAt(0).toUpperCase() + rdo.course.classType.slice(1).toLowerCase())
+        }
+        componentDidMount();
+      },[]);
+
     return (
         <Box flex={12} >
             <Container>
@@ -30,7 +69,7 @@ export default function Course({user}) {
                     <Paper elevation={3}>
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
-                                <Typography variant="h3">{course.courseTitle}</Typography>
+                                <Typography variant="h3">{title}</Typography>
                                 <HireClassButton/>
                             </Box>
                             <Container ><Divider/></Container>
@@ -38,14 +77,14 @@ export default function Course({user}) {
                                 <Card sx={{ maxWidth: 345, display:{xs:'none', sm:'none', md:'block'} }}>
                                     <CardHeader
                                         avatar={
-                                            <Avatar src={profesor.picture}/>
+                                            <Avatar src={""}/>
                                         }
-                                        title={<Typography variant="h6">{profesor.name + ' ' + profesor.lastname}</Typography>}
+                                        title={<Typography variant="h6">{professorName + ' ' + professorLastname}</Typography>}
                                     />
                                     <CardActionArea>
                                         <CardMedia 
                                             component='img'
-                                            image={course.picture}
+                                            image={picture}
                                         />
                                     </CardActionArea>
                                 </Card>
@@ -57,7 +96,7 @@ export default function Course({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Calificacion</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Calification calification={course.calification}/>
+                                                <Calification calification={calification}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -66,8 +105,8 @@ export default function Course({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.subjects[0]}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.subjects[0]}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.subjects}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.subjects}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>

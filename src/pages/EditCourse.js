@@ -74,7 +74,6 @@ export default function EditCourse({user}) {
         }
         componentDidMount();
       },[]);
-    console.log(user)
     return (
         <Box flex={12} style={{zIndex:1250}}>
             <Container>
