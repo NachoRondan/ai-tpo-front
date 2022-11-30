@@ -238,27 +238,23 @@ export const getAllClasses = async function(course)
                 case 200:
                 {
                     var courses = []
-                    let course ={
-                        title: '', 
-                        subject: '' ,
-                        frequency: '', 
-                        duration: '' ,
-                        price: '' ,
-                        description: '' ,
-                        classType: '' ,
-
-                    }
-                    data.courses.map((c) => (
-                        course.title = c.name, 
-                        course.subject= [c.subject],
-                        course.frequency= c.frequency, 
-                        course.duration= c.duration,
-                        course.price=c.cost,
-                        course.description= c.description,
-                        course.classType= c.classType,
-                        courses.push(course)
-                    )
-                    )
+                    data.forEach(c => {
+                        courses.push(
+                            {
+                                courseTitle: c.name,
+                                courseId: c._id,
+                                subjects: [c.subject],
+                                picture:DefaultPicture,
+                                paused: c.published,
+                                frecuency: c.frequency.charAt(0).toUpperCase() + c.frequency.slice(1).toLowerCase(),
+                                price:c.cost,
+                                description: c.description,
+                                classType: c.classType.charAt(0).toUpperCase() + c.classType.slice(1).toLowerCase(),
+                                calification:c.score.scoreValue,
+                                professorLastname: c.professorLastname,
+                                professorName: c.professorName
+                        })
+                    });
                     return ({courses:courses});//correcto
                 }
                 default:
@@ -293,14 +289,12 @@ export const getAllMyClasses = async function()
         
         let rdo = response.status;
         let data = await response.json();
-        console.log('data', data)
             switch(rdo)
             {
                 case 200:
                 {
                     var courses = []
                     data.forEach(c => {
-
                         courses.push(
                             {
                                 courseTitle: c.name,
@@ -312,9 +306,9 @@ export const getAllMyClasses = async function()
                                 price:c.cost,
                                 description: c.description,
                                 classType: c.classType,
+                                calification: 3,
                         })
                     });
-                    console.log('courses',courses)
                     return ({courses:courses});//correcto
                 }
                 default:
