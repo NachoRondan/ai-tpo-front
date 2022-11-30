@@ -11,7 +11,15 @@ import { getAllMyClasses } from '../controllers/courseController'
 function render(courses, navigate){
     if(courses.length > 0){
             return(
-                <Stack padding={2} spacing={2} divider={<Divider/>}>                            
+                <Stack padding={2} spacing={2} divider={<Divider/>}>
+                    <Box sx={{display:'flex'}} justifyContent='center'>
+                    <Paper elevation={3}>
+                            <Box sx={{display:'flex'}} justifyContent='space-around' alignItems='center' p={2}>
+                                <Typography marginRight={2} variant="h6">Publique una nueva Clase!</Typography>
+                                <Button sx={{ width: 111, height: 38 }} onClick={()=>navigate('/new-course')} color='secondary' variant="contained" >Publicar</Button>
+                            </Box>
+                    </Paper>     
+                    </Box>            
                     {courses.map((course, index) => {
                         return(<EditCoursesHome key={'edit-course-' + index} course={course}/>)
                     })}   
@@ -62,7 +70,7 @@ export default function MyCourses({user}) {
                             {render(courses, navigate)}
                         </Stack>
                     </Box>
-                    
+                   
                 </Stack>
             </Container>
         </Box>

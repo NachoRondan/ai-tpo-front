@@ -9,11 +9,22 @@ import PauseCircleOutlineOutlinedIcon from '@mui/icons-material/PauseCircleOutli
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { useState } from "react";
 import { IconButton } from '@mui/material';
+import { pauseCourse } from '../controllers/courseController'
 
 export default function AlertPausedCourse({course}) {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(course.paused)
   const [alertText, setAlertText] = useState(course.paused ? 'Su curso ahora se encuentra visible para la busqueda de los alumnos' : 'Su curso ya no se encuentra visible para la busqueda de los alumnos')
+
+
+  const updateCourse = async function(){
+    var courseToUpdate = {
+      courseId : course.courseId,
+      published : !edit,
+    }
+    pauseCourse(courseToUpdate);
+  }
+
 
   const handlePauseClick = () => {
       //TO DO
@@ -30,6 +41,7 @@ export default function AlertPausedCourse({course}) {
 
 
   const handleClose = () => {
+    updateCourse()
     setOpen(false);
   };
 
