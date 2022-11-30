@@ -17,7 +17,7 @@ export default function ClassFeedCard(props) {
           <Avatar sx={{display:{xs: 'block', lg:'block'}}} src={props.profesor.picture} aria-label="recipe"/>
         }
         title={props.course.courseTitle}
-        subheader={props.profesor.name + ' ' + props.profesor.lastname}
+        subheader={props.course.professorName + ' ' + props.course.professorLastname}
         subheaderTypographyProps={{display:{xs: 'block', sm:'none', lg:'block'}}}
       />
       <CardMedia
