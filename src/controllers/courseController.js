@@ -346,7 +346,6 @@ export const getClassById = async function(courseId)
             {
                 case 200:
                 {
-                    console.log('data',data)
                     var course ={
                         courseTitle: data.course.name,
                         courseId: data.course._id,
@@ -357,10 +356,11 @@ export const getClassById = async function(courseId)
                         classType: data.course.classType,
                         paused: data.course.published,
                         paused:false,
-                        picture:DefaultPicture
+                        picture:DefaultPicture,
+                        calification:data.course.score.scoreValue,
+                        professorLastname: data.course.professorLastname,
+                        professorName: data.course.professorName
                     }
-                    
-                    
                     return ({course:course});//correcto
                 }
                 default:
