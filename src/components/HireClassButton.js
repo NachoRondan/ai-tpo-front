@@ -11,7 +11,7 @@ import {useNavigate } from 'react-router-dom';
 
 
 
-export default function HireClassButton({courseId, professorId}) {
+export default function HireClassButton({courseId, user}) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate()
 
@@ -30,11 +30,11 @@ export default function HireClassButton({courseId, professorId}) {
       email: email,
       availability:firstHour + " - " + lastHour,
       message: message,
+      studentName: user.name + " " + user.lastname
     }
     asynBookCourse(bookingData)
     setOpen(false)
-  }
-
+  }  
   const asynBookCourse = async function(data){
     var response = await bookCourse(data)
     if(response.rdo === 1){
@@ -43,6 +43,7 @@ export default function HireClassButton({courseId, professorId}) {
     }
     else{
       alert(response.mensaje)
+      navigate("/home")
     }
   }
 
