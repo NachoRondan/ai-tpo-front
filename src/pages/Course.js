@@ -1,24 +1,11 @@
 import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
 import { useParams } from "react-router-dom"
-import getCourses from "../assets/MockUpVariables/MockUpCourses"
-import getUsers from "../assets/MockUpVariables/MockUpUsers"
 import Calification from '../components/Calification'
 import CommentsFeed from '../components/CommentsFeed'
 import HireClassButton from "../components/HireClassButton"
 import { useState, useEffect } from "react"
 import { getClassById } from '../controllers/courseController'
 
-function findCourse(courseId) {
-    return getCourses().find((element) => {
-      return element.courseId === parseInt(courseId)
-    })
-}
-
-function findProfesor(profesorId) {
-    return getUsers().find((element) => {
-      return element.userId === profesorId;
-    })
-}
 
 export default function Course({user}) {
 
@@ -29,9 +16,7 @@ export default function Course({user}) {
     const [picture, setPicture] = useState(course.picture)
     const [price, setPrice] = useState(course.price)
     const [subject, setSubject] = useState(course.subjects)
-    const [paused, setPaused] = useState(course.paused)
     const [frequency, setFrequency] = useState(course.frequency)
-    const [duration, setDuration] = useState(course.duration)
     const [calification, setCalification] = useState(course.calification)
     const [description, setDescription] = useState(course.description)
     const [classType, setClassType] = useState(course.classType)
@@ -50,12 +35,10 @@ export default function Course({user}) {
           setPicture(rdo.course.picture)
           setPrice(rdo.course.price)
           setSubject(rdo.course.subjects)
-          setPaused(rdo.course.paused)
-          setFrequency(rdo.course.frequency)
           setProfessorName(rdo.course.professorName)
           setCalification(rdo.course.calification)
           setProfessorLastname(rdo.course.professorLastname)
-          setDuration(rdo.course.frequency.charAt(0).toUpperCase() + rdo.course.frequency.slice(1).toLowerCase())
+          setFrequency(rdo.course.frequency.charAt(0).toUpperCase() + rdo.course.frequency.slice(1).toLowerCase())
           setDescription(rdo.course.description)
           setClassType(rdo.course.classType.charAt(0).toUpperCase() + rdo.course.classType.slice(1).toLowerCase())
         }
@@ -70,7 +53,7 @@ export default function Course({user}) {
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{title}</Typography>
-                                <HireClassButton/>
+                                <HireClassButton courseId={courseId}/>
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>
@@ -105,18 +88,18 @@ export default function Course({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.subjects}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.subjects}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{subject}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{subject}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Duracion</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Duracion</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Frecuencia</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Frecuencia</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.frecuency}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.frecuency}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{frequency}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{frequency}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -125,8 +108,8 @@ export default function Course({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Tipo de Clase</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{course.classType}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{course.classType}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{classType}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{classType}</Typography>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -135,8 +118,8 @@ export default function Course({user}) {
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Costo</Typography>
                                             </Box>
                                             <Box flex={6}>
-                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{'$' + course.price}</Typography>
-                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{'$' + course.price}</Typography>
+                                                <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>{'$' + price}</Typography>
+                                                <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>{'$' + price}</Typography>
                                             </Box>
                                         </Box>
                                     </Stack>
@@ -156,7 +139,7 @@ export default function Course({user}) {
                                         disabled 
                                         multiline
                                         rows={4}
-                                        defaultValue={course.description}
+                                        defaultValue={description}
                                     />
                                 </Box>
                             </Container>

@@ -1,13 +1,8 @@
 import { Container, Stack } from "@mui/material"
 import SidebarFilter from "../components/SidebarFilter"
 import Feed from "../components/Feed"
-import getCourses from "../assets/MockUpVariables/MockUpCourses"
 import { useState, useEffect } from "react";
 import { getAllClasses } from '../controllers/courseController';
-
-//const total_courses = getCourses()
-
-
 
 export default function Home({user}) {
   const [total_courses, setTotalCourses] = useState([]) 
