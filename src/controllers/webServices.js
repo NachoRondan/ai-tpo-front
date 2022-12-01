@@ -14,6 +14,8 @@ const urlWebServices = {
     getAllClasses : urlApi + "courses/",
     getClassById : urlApi + "courses/",
     getAllMyClasses: urlApi + "courses/professor-courses",
+
+    bookCourse: urlApi + "bookings/",
 }
 
 export default urlWebServices;

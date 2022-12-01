@@ -55,8 +55,7 @@ export default function SignIn({setUser}) {
     {
       alert(getLogin.mensaje)
     }
-  }
-
+  }  
   return (
     <Box flex={12} py={2}>
     <Container component="main" maxWidth="md" >
