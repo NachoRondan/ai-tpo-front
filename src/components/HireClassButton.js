@@ -105,7 +105,6 @@ export default function HireClassButton({courseId, user}) {
               onChange={(e)=>setFirstHour(e.target.value)}
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               label="Ultimo Horario disponible"

@@ -14,7 +14,7 @@ export default function ClassFeedCard(props) {
     <Card sx={{ maxWidth: 345, maxHeight: 310 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{display:{xs: 'block', lg:'block'}}} src={props.profesor.picture} aria-label="recipe"/>
+          <Avatar sx={{display:{xs: 'block', lg:'block'}}} src={props.course.profesorPicture} aria-label="recipe"/>
         }
         title={props.course.courseTitle}
         subheader={props.course.professorName + ' ' + props.course.professorLastname}

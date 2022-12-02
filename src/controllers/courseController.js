@@ -252,7 +252,8 @@ export const getAllClasses = async function(course)
                                 classType: c.classType.charAt(0).toUpperCase() + c.classType.slice(1).toLowerCase(),
                                 calification:c.score.scoreValue,
                                 professorLastname: c.professorLastname,
-                                professorName: c.professorName
+                                professorName: c.professorName,
+                                professorPicture: null
                         })
                     });
                     return ({courses:courses});//correcto
