@@ -78,7 +78,7 @@ export const updateScore = async function(score)
                 case 200:
                 {
                     
-                    return ({rdo:0,course:data.createdClass,mensaje:"Calificacion publicada con exito!"});//correcto
+                    return ({rdo:0,course:data.createdClass,mensaje:"Calificacion actualizada con exito!"});//correcto
                 }
                 default:
                 {
