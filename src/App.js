@@ -19,6 +19,8 @@ import MyCourses from "./pages/MyCourses";
 import EditCourse from "./pages/EditCourse";
 import NewCourse from "./pages/NewCourse";
 import MyCoursesStudent from "./pages/MyCoursesStudent";
+import EnrolledCourse from "./pages/EnrolledCourse";
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -44,6 +46,9 @@ function App() {
             </Route>
             <Route path="clase">
               <Route path=':courseId' element={<Course user={user} />}/>
+            </Route>
+            <Route path="enrolled-course">
+              <Route path=':courseId' element={<EnrolledCourse user={user} />}/>
             </Route>
             <Route path="contrataciones" element={<Contratacion user={user}/>}>
               <Route path=':contratacionId' element={<Course user={user} />}/>

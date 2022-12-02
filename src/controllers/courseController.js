@@ -472,4 +472,3 @@ export const enrollStudent = async function(enrollData)
         console.log("error",error);
     };
 }
-

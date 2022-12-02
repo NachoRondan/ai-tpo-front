@@ -2,12 +2,12 @@ import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionAr
 import { useParams } from "react-router-dom"
 import Calification from '../components/Calification'
 import CommentsFeed from '../components/CommentsFeed'
-import HireClassButton from "../components/HireClassButton"
+import CalificationButton from "../components/CalificationButton"
 import { useState, useEffect } from "react"
 import { getClassById } from '../controllers/courseController'
 
 
-export default function Course({user}) {
+export default function EnrolledCourse({user}) {
 
     const {courseId} = useParams()
     
@@ -53,7 +53,6 @@ export default function Course({user}) {
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{title}</Typography>
-                                <HireClassButton user={user} courseId={courseId}/>
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>
@@ -78,8 +77,8 @@ export default function Course({user}) {
                                                 <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Calificacion</Typography>
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Calificacion</Typography>
                                             </Box>
-                                            <Box flex={6}>
-                                                <Calification calification={calification}/>
+                                            <Box flex={6} sx={{display:'flex', justifyContent:'space-between', alignItems:'center', alignContent:'center'}}>
+                                                <CalificationButton calification={course.calification}/>
                                             </Box>
                                         </Box>
                                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
@@ -148,7 +147,7 @@ export default function Course({user}) {
                     </Paper>
                     <Paper elevation={3}>
                     <Box p={2}>
-                        <CommentsFeed user={user} enrolled={false} courseId={courseId}/>
+                        <CommentsFeed user={user} enrolled={true} courseId={courseId}/>
                     </Box> 
                     </Paper>
                 </Stack>

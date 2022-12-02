@@ -7,12 +7,14 @@ export default function Calification(props) {
 
     if (calification == 0){
         return(
-            <Typography>Aun no hay calificaciones</Typography>
+            <Box width={1}  sx={{ flexDirection: 'row' }} marginRight={2}>
+                <Typography variant="body1" >Aun no hay calificaciones</Typography>
+            </Box>
         )
     }
     else{
         return (
-            <Box width={1}  sx={{ flexDirection: 'row' }}>
+            <Box width={1}  sx={{ flexDirection: 'row' }} marginRight={2}>
                     {Array.from(Array(calification)).map(( _, index) => (
                         <StarRateIcon key={'star-icon-' + index} style={{ color: '#fabb05' }}/>
                     ))}
