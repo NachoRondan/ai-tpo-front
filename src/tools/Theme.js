@@ -6,7 +6,6 @@ const mainSuccessColor = '#eaefc9'
 
 let Theme = createTheme({
     palette: {
-
         primary: {
             main: mainRedColor,
         },
@@ -16,6 +15,13 @@ let Theme = createTheme({
         success:{
             main: mainSuccessColor,
         },
+        action: {
+            disabled: mainSecondaryColor
+        },
+        text:{
+            disabled: mainSecondaryColor,
+        }
+
     },
     zIndex: {
         appBar: 1251,
