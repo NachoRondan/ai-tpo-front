@@ -1,10 +1,11 @@
-import { Paper, Box, List, ListItem, ListItemText, IconButton, Typography, Container, Divider, Card, CardActionArea, CardMedia, Button,} from "@mui/material"
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import AlertDeleteCourse from "./AlertDeleteCourse";
+import { Paper, Box, List, ListItem, ListItemText, Typography, Container, Divider, Card, CardActionArea, CardMedia, Button,} from "@mui/material"
 import AlertPausedCourse from "./AlertPausedCourse";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CalificationButton from "./CalificationButton";
+import Calification from "./Calification";
 
 export default function ViewHiredCourse({course}) {
+    const navigate = useNavigate()
     return (
         <Paper elevation={3}>
             <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
@@ -25,16 +26,18 @@ export default function ViewHiredCourse({course}) {
                             <List >
                                 <ListItem
                                         secondaryAction={
-                                            <AlertPausedCourse course={course}/>
+                                            <CalificationButton course={course}/>
                                         }
                                     >
                                     <ListItemText
-                                        primary={<Typography variant="h5">Calificar</Typography>}
+                                        primary={
+                                                <Typography variant="h5">Calificacion</Typography>
+                                        }
                                     />
                                 </ListItem>
                                 <Divider/>
                                 <Box marginTop={4} sx={{display:'flex', justifyContent:'center'}}>
-                                    <Button variant='contained' color='secondary' >Ver Informacion del Curso</Button>
+                                    <Button onClick={()=> navigate('/enrolled-course/'+course.courseId)} variant='contained' color='secondary'>Ver Informacion del Curso</Button>
                                 </Box>
                             </List>
                     </Container>
