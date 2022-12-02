@@ -113,7 +113,7 @@ export default function EditCourse({user}) {
                                     </Stack>
                                 <Container >
                                     <Stack divider={<Divider/>} >
-                                        <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
+                                        <Box p={2} sx={{display:'flex', justifyContent:'space-between',  alignContent:'center'}}>
                                             <Box flex={6} >
                                                 <Typography variant="h5" display='flex' flex={8} sx={{display:{xs:'none',sm:'block'}}}>Materia</Typography>
                                                 <Typography variant="h6" display='flex' flex={8} sx={{display:{xs:'block',sm:'none'}}}>Materia</Typography>
