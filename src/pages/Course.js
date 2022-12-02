@@ -1,4 +1,4 @@
-import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider } from "@mui/material"
+import { Stack, TextField, Paper, Box, Container, Typography, Card, CardActionArea, CardMedia, Avatar, CardHeader, Divider, Button } from "@mui/material"
 import { useParams } from "react-router-dom"
 import Calification from '../components/Calification'
 import CommentsFeed from '../components/CommentsFeed'
@@ -133,6 +133,7 @@ export default function Course({user}) {
                                     <Typography marginBottom={2} variant="h5" display='flex' flex={8} >
                                         Descripción del Curso
                                     </Typography>
+                                    
                                     <TextField
                                         id="outlined-multiline-static"
                                         fullWidth 
@@ -147,7 +148,7 @@ export default function Course({user}) {
                     </Paper>
                     <Paper elevation={3}>
                     <Box p={2}>
-                        <CommentsFeed/>
+                        <CommentsFeed course={course}/>
                     </Box> 
                     </Paper>
                 </Stack>

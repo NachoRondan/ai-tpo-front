@@ -1,4 +1,4 @@
-import { Stack, Box, Chip, Typography, Divider, Button, TextField } from "@mui/material";
+import { Stack, Box, Chip, Typography, Divider, TextField } from "@mui/material";
 import { getProfessorBokings } from "../controllers/bookingController";
 import { useEffect, useState } from "react";
 import ContactInfoButton from "../components/ContactInfoButton"
@@ -35,7 +35,7 @@ function returnChipStatus(status){
 
 
 export default function ContratacionesFeed({user}){
-    //const contrataciones = getContrataciones()
+    
     const [contrataciones, setContrataciones] = useState([])  
     
     useEffect(()=>{

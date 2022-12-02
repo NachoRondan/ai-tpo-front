@@ -144,7 +144,7 @@ export const deleteCourse = async function(course)
                 {
 
                     console.log('data',data)
-                    //return ({rdo:0,course:data.createdClass,mensaje:"Curso creado con exito!"});
+                    return ({rdo:0,data:data,mensaje:"Curso eliminado!"});
                 }
                 default:
                 {
@@ -197,9 +197,7 @@ export const pauseCourse = async function(course)
             {
                 case 200:
                 {
-
-                    console.log('data',data)
-                    //return ({rdo:0,course:data.createdClass,mensaje:"Curso creado con exito!"});
+                    return ({rdo:0,data:data,mensaje:"Curso pausado!"});
                 }
                 default:
                 {
@@ -325,6 +323,60 @@ export const getAllMyClasses = async function()
     };
 }
 
+export const getAllMyClassesStudent = async function()
+{
+    //url webservices
+    let url = urlWebServices.getAllMyClassesStudent;
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'GET', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},            
+        });
+        
+        let rdo = response.status;
+        let data = await response.json();
+            switch(rdo)
+            {
+                case 200:
+                {
+                    var courses = []
+                    data.forEach(c => {
+                        courses.push(
+                            {
+                                courseTitle: c.name,
+                                courseId: c._id,
+                                subjects: c.subject,
+                                picture:DefaultPicture,
+                                paused: c.published,
+                                frecuency: c.frequency,
+                                price:c.cost,
+                                description: c.description,
+                                classType: c.classType,
+                                calification: 3,
+                        })
+                    });
+                    return ({courses:courses});//correcto
+                }
+                default:
+                {
+                    //otro error
+                    return ({courses:[]});                
+                }
+            }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
 export const getClassById = async function(courseId)
 {
     //url webservices
@@ -356,7 +408,6 @@ export const getClassById = async function(courseId)
                         description: data.course.description,
                         classType: data.course.classType,
                         paused: data.course.published,
-                        paused:false,
                         picture:DefaultPicture,
                         calification:data.course.score.scoreValue,
                         professorLastname: data.course.professorLastname,
@@ -368,6 +419,51 @@ export const getClassById = async function(courseId)
                 {
                     //otro error
                     return ({courses:[]});                
+                }
+            }
+    }
+    catch(error)
+    {
+        console.log("error",error);
+    };
+}
+
+export const enrollStudent = async function(enrollData)
+{
+    //url webservices
+    let url = urlWebServices.enrollStudent;
+    //armo json con datos
+    const formData = new URLSearchParams();
+    formData.append('courseId', enrollData.courseId);
+    formData.append('studentId', enrollData.studentId);
+
+    try
+    {
+        let response = await fetch(url,{
+            method: 'POST', // or 'PUT'
+            mode: "cors",
+            headers:{   
+                'Accept':'application/x-www-form-urlencoded',
+                'x-access-token': localStorage.getItem('x'),
+                'Origin':'http://localhost:3000',
+                'Content-Type': 'application/x-www-form-urlencoded'},
+            body: formData,
+            
+        });
+        
+        let rdo = response.status;
+        let data = await response.json();
+            switch(rdo)
+            {
+                case 200:
+                {
+                    
+                    return ({rdo:0,course:data.createdClass,mensaje:"Curso creado con exito!"});//correcto
+                }
+                default:
+                {
+                    //otro error
+                    return ({rdo:1,mensaje:"Ha ocurrido un error"});                
                 }
             }
     }

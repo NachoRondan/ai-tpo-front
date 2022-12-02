@@ -3,14 +3,16 @@ import MobileUserProfileSideBar from '../components/MobileUserProfileSideBar'
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import ContactPhoneOutlinedIcon from '@mui/icons-material/ContactPhoneOutlined';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { Link, } from "react-router-dom";
 
 export default function UserProfileSideBar() {
 
   var list = [
     {tabName:'Mis Datos', icon: <BadgeOutlinedIcon />, link:'/profile'},
-    {tabName:'Mis Cursos', icon: <SchoolOutlinedIcon />, link:'/my-courses'},
+    {tabName:'Docente - Cursos', icon: <AccountBalanceIcon />, link:'/my-courses'},
     {tabName:'Contrataciones', icon: <ContactPhoneOutlinedIcon />, link:'/contrataciones'},
+    {tabName:'Alumno - Cursos', icon: <SchoolOutlinedIcon />, link:'/my-courses-student'},
   ]
     return (
       <>

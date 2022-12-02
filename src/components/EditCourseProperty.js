@@ -19,7 +19,6 @@ export default function EditCourseTitleButton({setValue, value, options}) {
   };
 
   const handleSetTitle = () => {
-    console.log(aux)
     setValue(aux)
     setOpen(false)
   }
@@ -35,11 +34,8 @@ export default function EditCourseTitleButton({setValue, value, options}) {
         Editar
       </Button>
       <Dialog open={open} onClose={handleClose} style={{zIndex:1253}}>
-        <DialogTitle>Nuevo Titulo Para el Curso</DialogTitle>
+        <DialogTitle>Seleccione el valor</DialogTitle>
         <DialogContent>
-            <DialogContentText>
-             Seleccione el valor:
-            </DialogContentText>
             <FormGroup>
             {options.map((option) => (value === option) ? 
             (<FormControlLabel key={option + '-true'} control={<Checkbox value={option} onChange={handleCheckbox} color='secondary' defaultChecked />} label={option} />) :

@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogTitle, DialogActions, DialogContentText, DialogContent, } from "@mui/material";
 import React from "react";
 import { updateBookingStatus } from "../controllers/bookingController";
+import { enrollStudent } from '../controllers/courseController'
 
 const updateBooking = async function(booking){
     var updatedBooking = {
@@ -9,6 +10,13 @@ const updateBooking = async function(booking){
     }
     var response = await updateBookingStatus(updatedBooking);
     if(response.rdo === 0){
+        if (booking.status === 'SOLICITADA'){
+            var enrollData = {
+                courseId: response.data.data.courseId,
+                studentId: response.data.data.userId
+            }
+            var responseCourse = await enrollStudent(enrollData)
+        }
         alert(response.mensaje)
     }
     else{

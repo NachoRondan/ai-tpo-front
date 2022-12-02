@@ -134,7 +134,7 @@ export const updateBookingStatus = async function(booking)
             {
                 case 200:
                 {
-                    return ({rdo:0, mensaje:"Contratacion actualizada!"});//correcto
+                    return ({rdo:0, data: data, mensaje:"Contratacion actualizada!"});//correcto
                 }
                 default:
                 {

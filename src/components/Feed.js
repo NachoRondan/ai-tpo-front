@@ -1,12 +1,5 @@
 import { Box, Container, Grid } from "@mui/material"
 import ClassFeedCard from "./ClassFeedCard"
-import getUsers from '../assets/MockUpVariables/MockUpUsers'
-
-function findProfesor(profesorId) {
-  return getUsers().find((element) => {
-    return element.userId === profesorId;
-  })
-}
 
 export default function Feed(props) {
     return (
