@@ -53,7 +53,7 @@ export default function Course({user}) {
                         <Box marginBottom={2} sx={{ display:'flex', flexDirection: 'column'}}>
                             <Box p={2} marginRight={1} marginBottom={1} sx={{ display:'flex', flexDirection:{ xs:'column',sm:'row'}, justifyContent:'space-between'}}>
                                 <Typography variant="h3">{title}</Typography>
-                                <HireClassButton user={user} courseId={courseId}/>
+                                {user ? <HireClassButton user={user} courseId={courseId}/> : null}
                             </Box>
                             <Container ><Divider/></Container>
                             <Box marginTop={2} px={2} sx={{ display:'flex', flexDirection: 'row'}}>

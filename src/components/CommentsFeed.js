@@ -1,7 +1,7 @@
-import { Box, Typography, Divider, Avatar, Grid, Paper } from "@mui/material"
+import { Box, Typography, Divider, Avatar, Grid, Paper, } from "@mui/material"
 import { useState, useEffect } from "react"
 import NewCommentButton from "./NewCommentButton"
-import { getCourseComments } from "../controllers/commentsController"
+import { getApprovedCourseComments } from "../controllers/commentsController"
 
 export default function CommentsFeed(props) {
 
@@ -11,9 +11,9 @@ export default function CommentsFeed(props) {
       async function componentDidMount() 
       {
         //traer imagenes de User
-        let rdo = await getCourseComments(props.courseId);
+        let rdo = await getApprovedCourseComments(props.courseId);
         console.log('rdo',rdo)
-        setComments(rdo.comments)
+        setComments(rdo.comments.filter(c => c.status === 'ACTIVO'))
       }
       componentDidMount();
     },[]);
