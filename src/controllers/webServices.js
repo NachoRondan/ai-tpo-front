@@ -18,7 +18,9 @@ const urlWebServices = {
     enrollStudent: urlApi + "courses/enroll-student",
 
     getCourseComments: urlApi + "comments/",
+    getApprovedCourseComments: urlApi + "comments/approved/",
     postComment: urlApi + "comments/",
+    updateComment: urlApi + "comments/",
 
     bookCourse: urlApi + "bookings/",
     getAllMyProfessorBookings: urlApi + "bookings/professor-bookings",

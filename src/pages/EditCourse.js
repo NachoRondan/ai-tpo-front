@@ -7,6 +7,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { getClassById } from '../controllers/courseController'
 import { updateCourse } from "../controllers/courseController"
 import EditCourseProperty from '../components/EditCourseProperty'
+import CommentsFeedEdit from "../components/CommentsFeedEdit"
 
 
 export default function EditCourse({user}) {
@@ -186,6 +187,9 @@ export default function EditCourse({user}) {
                                     />
                                 </Box>
                             </Container>
+                        </Box>
+                        <Box p={2}>
+                            <CommentsFeedEdit user={user} courseId={courseId}/>
                         </Box>
                         <Box p={2} sx={{display:'flex', justifyContent:'space-around',  alignContent:'center'}}>
                             <Button onClick={()=>{navigate('/my-courses')}} color='primary' variant="contained">Cancelar</Button>
