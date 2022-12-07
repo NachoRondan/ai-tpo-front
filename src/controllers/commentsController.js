@@ -4,7 +4,6 @@ export const getCourseComments = async function(courseId)
 {
     //url webservices
     let url = urlWebServices.getCourseComments + courseId;
-    console.log('url',url)
     try
     {
         let response = await fetch(url,{
@@ -46,7 +45,6 @@ export const getApprovedCourseComments = async function(courseId)
 {
     //url webservices
     let url = urlWebServices.getApprovedCourseComments + courseId;
-    console.log('url',url)
     try
     {
         let response = await fetch(url,{

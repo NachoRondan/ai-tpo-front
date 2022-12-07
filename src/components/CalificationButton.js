@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Box, Menu, MenuItem, IconButton} from "@mui/material"
-import { bookCourse } from "../controllers/bookingController"
 import Calification from './Calification';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { postScore } from '../controllers/scoreController';
 
-export default function CalificationButton({courseId, calification, user}) {
+export default function CalificationButton({course, calification, user}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -15,20 +15,18 @@ export default function CalificationButton({courseId, calification, user}) {
     setAnchorEl(null);
   };
 
-  const handleCalification = () => {
-    var bookingData = {
-      courseId: courseId,
-      phoneNumber: phoneNumber,
-      email: email,
-      availability:firstHour + " - " + lastHour,
-      message: message,
-      studentName: user.name + " " + user.lastname
+  const handleCalification = (e) => {
+    var score = e.target.id ? e.target.id : e.target.parentElement.id
+    
+    var scoreData = {
+      courseId: course.courseId,
+      score: score
     }
-    asynBookCourse(bookingData)
-    //setOpen(false)
+    asyncPost(scoreData)
+    handleClose()
   }  
-  const asynBookCourse = async function(data){
-    var response = await bookCourse(data)
+  const asyncPost = async function(data){
+    var response = await postScore(data)
     if(response.rdo === 1){
       alert(response.mensaje)
     }
@@ -36,13 +34,6 @@ export default function CalificationButton({courseId, calification, user}) {
       alert(response.mensaje)
     }
   }
-
-  const [message, setMessage] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [firstHour, setFirstHour] = React.useState("");
-  const [lastHour, setLastHour] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-
 
   return (
     <Box sx={{display:'flex', alignItems:'center'}}>
@@ -64,11 +55,11 @@ export default function CalificationButton({courseId, calification, user}) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}><Calification calification={1}/></MenuItem>
-        <MenuItem onClick={handleClose}><Calification calification={2}/></MenuItem>
-        <MenuItem onClick={handleClose}><Calification calification={3}/></MenuItem>
-        <MenuItem onClick={handleClose}><Calification calification={4}/></MenuItem>
-        <MenuItem onClick={handleClose}><Calification calification={5}/></MenuItem>
+        <MenuItem id={1} onClick={handleCalification}><Calification calification={1}/></MenuItem>
+        <MenuItem id={2} onClick={handleCalification}><Calification calification={2}/></MenuItem>
+        <MenuItem id={3} onClick={handleCalification}><Calification calification={3}/></MenuItem>
+        <MenuItem id={4} onClick={handleCalification}><Calification calification={4}/></MenuItem>
+        <MenuItem id={5} onClick={handleCalification}><Calification calification={5}/></MenuItem>
       </Menu>
     </Box>
   );
