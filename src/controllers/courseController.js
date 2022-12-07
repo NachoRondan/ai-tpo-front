@@ -248,7 +248,7 @@ export const getAllClasses = async function(course)
                                 price:c.cost,
                                 description: c.description,
                                 classType: c.classType.charAt(0).toUpperCase() + c.classType.slice(1).toLowerCase(),
-                                calification:c.score.scoreValue,
+                                calification: c.score.scoreValue,
                                 professorLastname: c.professorLastname,
                                 professorName: c.professorName,
                                 professorPicture: null
@@ -342,6 +342,7 @@ export const getAllMyClassesStudent = async function()
         
         let rdo = response.status;
         let data = await response.json();
+        console.log('data',data)
             switch(rdo)
             {
                 case 200:
@@ -359,7 +360,7 @@ export const getAllMyClassesStudent = async function()
                                 price:c.cost,
                                 description: c.description,
                                 classType: c.classType,
-                                calification: 3,
+                                calification: c.score.scoreValue,
                         })
                     });
                     return ({courses:courses});//correcto
@@ -408,11 +409,12 @@ export const getClassById = async function(courseId)
                         description: data.course.description,
                         classType: data.course.classType,
                         paused: data.course.published,
-                        picture:DefaultPicture,
-                        calification:data.course.score.scoreValue,
+                        picture: DefaultPicture,
+                        calification: data.course.score.scoreValue,
                         professorLastname: data.course.professorLastname,
                         professorName: data.course.professorName
                     }
+                    
                     return ({course:course});//correcto
                 }
                 default:

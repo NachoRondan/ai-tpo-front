@@ -12,7 +12,6 @@ export default function CommentsFeed(props) {
       {
         //traer imagenes de User
         let rdo = await getApprovedCourseComments(props.courseId);
-        console.log('rdo',rdo)
         setComments(rdo.comments.filter(c => c.status === 'ACTIVO'))
       }
       componentDidMount();

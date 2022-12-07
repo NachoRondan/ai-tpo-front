@@ -29,7 +29,6 @@ export default function Course({user}) {
         {
           //traer imagenes de User
           let rdo = await getClassById(courseId);
-          setCalification(rdo.course.calification)
           setCourse(rdo.course); 
           setTitle(rdo.course.courseTitle)
           setPicture(rdo.course.picture)
@@ -44,7 +43,6 @@ export default function Course({user}) {
         }
         componentDidMount();
       },[]);
-
     return (
         <Box flex={12} >
             <Container>

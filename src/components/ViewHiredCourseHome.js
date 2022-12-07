@@ -1,8 +1,7 @@
 import { Paper, Box, List, ListItem, ListItemText, Typography, Container, Divider, Card, CardActionArea, CardMedia, Button,} from "@mui/material"
-import AlertPausedCourse from "./AlertPausedCourse";
 import { useNavigate } from "react-router-dom";
 import CalificationButton from "./CalificationButton";
-import Calification from "./Calification";
+
 
 export default function ViewHiredCourse({course}) {
     const navigate = useNavigate()
@@ -26,12 +25,12 @@ export default function ViewHiredCourse({course}) {
                             <List >
                                 <ListItem
                                         secondaryAction={
-                                            <CalificationButton course={course}/>
+                                            <CalificationButton calification={course.calification} course={course}/>
                                         }
                                     >
                                     <ListItemText
                                         primary={
-                                                <Typography variant="h5">Calificacion</Typography>
+                                                <Typography variant="h5">Tu Calificacion</Typography>
                                         }
                                     />
                                 </ListItem>
