@@ -412,9 +412,9 @@ export const getClassById = async function(courseId)
                         picture: DefaultPicture,
                         calification: data.course.score.scoreValue,
                         professorLastname: data.course.professorLastname,
-                        professorName: data.course.professorName
+                        professorName: data.course.professorName,
+                        calification: data.course.score.scoreValue
                     }
-                    
                     return ({course:course});//correcto
                 }
                 default:
