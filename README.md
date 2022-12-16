@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# APPrender
+Este repositorio corresponde al front end de la aplicacion APPrender. APPprender es una aplicacion orientada a alumnos y docentes quienes pueden registrarse y contratar/ofrecer clases de distintos tipos. La aplicacion permite registrarse tanto como alumnos o profesores, buscar y publicar clases, comentar y calificar clases tomadas, asi como tambien contratarlas.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tecnologias
+El proyecto esta realizado con las siguientes tecnologias:
 
-## Available Scripts
+- [React.Js](https://reactjs.org/)
+- [MaterialUi](https://mui.com/)
+- HTML
+- CSS
 
-In the project directory, you can run:
+#### Imagenes de la aplicacion funcionando:   
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/41348212/208121800-3d5a3e0a-bef7-44bc-bc0c-901a5a898345.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![image](https://user-images.githubusercontent.com/41348212/208122018-d7e2feec-28d4-46f1-a1f9-45cedbe8ab17.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalacion y configuracion
 
-### `npm test`
+Clonar el repositorio. Se necesitara "node" y "npm" instalado globalmente.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Instalacion:
 
-### `npm run build`
+`npm install`  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para ejecutar la aplicacion:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`npm start`  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+El comando npm start abrira automaticamente la aplicacion en el navegador aunque se puede acceder en la siguiente direccion:
 
-### `npm run eject`
+`http://localhost:[PORT]/`  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ # Estructura del proyecto
+ El directorio raiz se encuentra compuesto de la siguiente manera:
+  * public - Carpeta que contiene el html
+  * src:
+    * assets - imagenes y archivos para mock up
+    * components - contiene los archivos de los componentes react
+    * controller - Controladores de los distintos servicios
+    * pages - contiene los archivos de las distintas paginas de la aplicacion
+    * tools - contiene ruteo de la pagina y configuracion visual
+    * app.js - Archivo con el componente app, es el componente principal de la aplicacion
+    * index.js
+  * .gitignore - Archivo que contiene una lista de archivos para ser ignorados por git
+  * README.md - Archivo descriptivo con la informacion del proyecto
+  * package-lock.json - Archivo default node
+  * package.json - Archivo default node con las dependencias
