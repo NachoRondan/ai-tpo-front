@@ -79,6 +79,7 @@ export const createUser = async function (user)
     formData.append('lastname', user.lastname);
     formData.append('email', user.email);
     formData.append('password', user.password);
+    formData.append('securityAnswer', user.securityAnswer);
     formData.append('phoneNumber', user.phoneNumber);
     try
     {
@@ -272,4 +273,37 @@ export const updateProfilePicture = async function (files, titles){
         alert('Error uploading the files')
         console.log('Error uploading the files', err)
     }
+}
+export const updatePassword = async function (passwordData){
+        //url webservices
+        let url = urlWebServices.resetPassword;
+        //armo json con datos
+        const formData = new URLSearchParams();
+        formData.append('email', passwordData.email);
+        formData.append('newPassword', passwordData.newPassword);
+        formData.append('securityAnswer', passwordData.securityAnswer);
+    
+        try
+        {
+            let response = await fetch(url,{
+                method: 'POST', // or 'PUT'
+                mode: "cors",
+                headers:{   
+                    'Accept':'application/x-www-form-urlencoded',
+                    'x-access-token': localStorage.getItem('x'),
+                    'Origin':'http://localhost:3000',
+                    'Content-Type': 'application/x-www-form-urlencoded'},
+                body: formData,
+                
+            });
+            
+            console.log("response",response);
+            let data = await response.json();
+            console.log("jsonresponse",data);
+            return {status:response.status, mensaje:'Contraseña actualizada con exito!'};
+        }
+        catch(error)
+        {
+            return {status:500, mensaje:'Error al actualizar la contraseña!'};
+        };
 }

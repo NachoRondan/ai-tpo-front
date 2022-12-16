@@ -40,6 +40,7 @@ export const RegistroProfesor=()=>{
       lastname : data.get('apellido'),
       email : data.get('correo'),
       phoneNumber : data.get('numero'),
+      securityAnswer : data.get('securityAnswer'),
       password : data.get('clave'),
       workExperience : data.get('experiencia'),
       titles : data.get('titulos'),
@@ -81,6 +82,9 @@ return (
             />
           <TextField margin="normal"required fullWidth id="confirmarClave" label="Confirmar Password" autoFocus
             name="confirmClave"
+          />
+          <TextField margin="normal"required fullWidth id="preguntaSeguridad" label="Cual fue su primer mascota?" autoFocus
+            name="securityAnswer"
           />
           <TextField margin="normal" required fullWidth id="numero" label="Numero Telefonico" autoComplete="numero" autoFocus
             name="numero"

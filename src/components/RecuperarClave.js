@@ -4,11 +4,27 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import { Button, Typography } from '@mui/material';
+import { updatePassword } from '../controllers/userController';
+import { useNavigate } from 'react-router-dom';
 
 export const RecuperarClave=()=>{
+const navigate = useNavigate();
 
-const handleSubmit=()=>{console.log("hola")}
-
+const handleSubmit= async (event)=>{
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  var newPasswordData = {
+    email : data.get('email'),
+    newPassword : data.get('newPassword'),
+    securityAnswer : data.get('securityAnswer'),
+  }
+  var response = await updatePassword(newPasswordData);
+  alert(response.mensaje)
+  if( response.status === 200)
+  {
+    navigate('/login')
+  }
+}
 
 
 
@@ -35,7 +51,7 @@ return (<Container component="main" maxWidth="xs">
             fullWidth
             id="correo"
             label="Direccion de Correo Electronico"
-            name="correo"
+            name="email"
             autoComplete="correo"
             autoFocus
           />
@@ -46,7 +62,7 @@ return (<Container component="main" maxWidth="xs">
             fullWidth
             id="pregunta"
             label="Pregunta de Seguridad"
-            name="pregunta"
+            name="securityAnswer"
             autoComplete="pregunta"
             autoFocus
           />
@@ -57,7 +73,7 @@ return (<Container component="main" maxWidth="xs">
             fullWidth
             id="nuevaClave"
             label="Ingrese su nueva clave"
-            name="nuevaClave"
+            name="newPassword"
             autoComplete="nuevaClave"
             autoFocus
           />

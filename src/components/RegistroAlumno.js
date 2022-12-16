@@ -35,13 +35,15 @@ export const RegistroAlumno=()=>{
   const handleSubmit=(event)=>{
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data.get('securityAnswer'))
     var userData = {
       name : data.get('nombre'),
       lastname : data.get('apellido'),
       email : data.get('correo'),
       password : data.get('clave'),
       birthdate : data.get('fechaNacimiento'),
-      phoneNumber : data.get('numero')
+      phoneNumber : data.get('numero'),
+      securityAnswer : data.get('securityAnswer'),
     }
     createStudentProfileAsync(userData);
   }
@@ -84,6 +86,9 @@ export const RegistroAlumno=()=>{
             />
             <TextField margin="normal"required fullWidth id="confirmarClave" label="Confirmar Password" autoFocus
               name="confirmClave"
+            />
+            <TextField margin="normal"required fullWidth id="preguntaSeguridad" label="Cual fue su primer mascota?" autoFocus
+            name="securityAnswer"
             />
             <TextField margin="normal" required fullWidth id="numero" label="Numero Telefonico" autoComplete="numero" autoFocus
               name="numero"
